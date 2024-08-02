@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>Meme Generator</title>
+  </head>
+  <body onload="onInit()">
+    <header>
+      <h1>Meme it</h1>
+      <nav class="tool-bar">
+        <li>
+          <a class="gallery">Gallery</a>
+        </li>
+        <li>
+          <a class="memes">Memes</a>
+        </li>
+        <li>
+          <a class="info">About</a>
+        </li>
+      </nav>
+    </header>
+
+    <section class="meme-gallery-page hidden">
+      <main>
+        <section class="filter-search-container">
+          <input
+            list="memes-types"
+            type="text"
+            class="search-input"
+            placeholder="search"
+            oninput="onSearchMeme(this.value)"
+          />
+          <datalist id="memes-types">
+            <option value=""></option>
+            <option value="sad">Sad</option>
+            <option value="happy">Happy</option>
+            <option value="angry">Angry</option>
+            <option value="funny">funny</option>
+          </datalist>
+        </section>
+
+        <section class="memes-gallery-container">
+          <article class="meme-img">
+            <img src="img/9.jpg" alt="funny meme" onclick="onClickedMeme(this)" />
+          </article>
+          <article class="meme-img">
+            <img src="img/16.jpg" alt="funny meme" onclick="onClickedMeme(this)" />
+          </article>
+        </section>
+      </main>
+    </section>
+
+    <section class="meme-editor-page">
+      <main>
+        <canvas class="meme-editor-canvas" width="500px" height="600px"></canvas>
+        <section class="editor-tools">
+          <input type="text" placeholder="Add Text Here" oninput="onAddTxt(this)" />
+        </section>
+      </main>
+    </section>
+
+    <footer>
+        <small>&copy;2024 All rights reserved. Keren Vasserman.</small>
+    </footer>
+    <script src="js/controllers/meme-editor.controller.js"></script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background-color: lightgray;
+}
+
+.hidden {
+  display: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  list-style-type: none;
+  justify-content: space-around;
+  gap: 2em;
+}
+
+canvas{
+    background-color: #fff;
+    border: 1px solid black;
+    
+}
