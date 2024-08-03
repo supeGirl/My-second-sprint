@@ -18,8 +18,9 @@ function onSearchMeme(search) {
 }
 
 function onAddTxt(elTxt) {
-  console.log('your txt', elTxt)
+  setLineTxt(elTxt)
   gCurrentText = elTxt
+  console.log('Updated Text:', getSelectedLine().txt)
   renderMeme()
 }
 
@@ -56,30 +57,30 @@ function resizeCanvas() {
 }
 
 function renderMeme() {
-    const meme = getMeme()
-    const img = gImgs.find(img => img.id === meme.selectedImgId)
-  
-if(img){
+  const meme = getMeme()
+  const img = gImgs.find((img) => img.id === meme.selectedImgId)
 
+  if (img) {
     const elMeme = new Image()
     elMeme.src = img.url
-    elMeme.onload = () => coverCanvasWithMeme(elMeme)
-}
-
+    elMeme.onload = () =>  {
+        gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+        coverCanvasWithMeme(elMeme)
+        renderTxt()
+    }
+  }
 }
 
 function renderTxt() {
-  if (!gCurrentText) {
-    return
+  const selectedLine = getSelectedLine()
+  if (selectedLine && selectedLine.txt) {
+    gCtx.font = `${selectedLine.size}px Arial`
+    gCtx.fillStyle = selectedLine.color || 'white'
+    gCtx.textAlign = 'center'
+
+    const txtOffsetFromTop = 20
+    const txtPositionY = txtOffsetFromTop + selectedLine.size
+
+    gCtx.fillText(gCurrentText, gElCanvas.width / 2, txtPositionY)
   }
-  
-  gCtx.font = '30px Arial'
-  gCtx.fillStyle = 'white'
-  gCtx.textAlign = 'center'
-
-
-  const txtOffsetFromTop = 20
-  const txtPositionY = txtOffsetFromTop + 30
-
-  gCtx.fillText(gCurrentText, gElCanvas.width / 2.5, txtPositionY)
 }
