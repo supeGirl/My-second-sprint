@@ -23,7 +23,7 @@
       </nav>
     </header>
 
-    <section class="meme-gallery-page ">
+    <section class="meme-gallery-page hidden">
       <main>
         <section class="filter-search-container">
           <input
@@ -42,12 +42,12 @@
           </datalist>
         </section>
 
-        <section class="memes-gallery-container">
+        <section class="memes-gallery-container ">
           <article class="meme-img">
-            <img src="img/1.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
+            <img src="img/1.jpg" alt="funny angry meme" onclick="onSelectMeme(this)" />
           </article>
           <article class="meme-img">
-            <img src="img/2.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
+            <img src="img/2.jpg" alt="cute dog meme" onclick="onSelectMeme(this)" />
           </article>
           <!-- <article class="meme-img">
             <img src="img/3.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
@@ -117,6 +117,7 @@
     <footer>
         <small>&copy;2024 All rights reserved. Keren Vasserman.</small>
     </footer>
+    <script src="js/sevices/meme-editor.service.js"></script>
     <script src="js/controllers/meme-editor.controller.js"></script>
   </body>
 </html>

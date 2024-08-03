@@ -56,12 +56,16 @@ function resizeCanvas() {
 }
 
 function renderMeme() {
-  if (!gCurrentMeme) return
+    const meme = getMeme()
+    const img = gImgs.find(img => img.id === meme.selectedImgId)
+  
+if(img){
 
-  const elMeme = new Image()
-  elMeme.src = gCurrentMeme
+    const elMeme = new Image()
+    elMeme.src = img.url
+    elMeme.onload = () => coverCanvasWithMeme(elMeme)
+}
 
-  elMeme.onload = () => coverCanvasWithMeme(elMeme)
 }
 
 function renderTxt() {
