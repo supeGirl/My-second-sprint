@@ -8,13 +8,10 @@ let gCurrentText = 'Add Text Here'
 function onInit() {
   gElCanvas = document.querySelector('canvas')
   gCtx = gElCanvas.getContext('2d')
+  renderGallery()
   resizeCanvas()
 
   window.addEventListener('resize', resizeCanvas)
-}
-
-function onSearchMeme(search) {
-  console.log('your search', search)
 }
 
 function onAddTxt(elTxt) {

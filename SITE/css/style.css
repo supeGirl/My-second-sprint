@@ -11,6 +11,8 @@ body {
 /* heder and nav ber */
 header {
   display: flex;
+  position: relative;
+  margin: auto;
   justify-content: space-between;
   padding: 20px;
   align-items: center;
