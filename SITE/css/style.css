@@ -8,10 +8,7 @@ body {
   background-color: lightgray;
 }
 
-.hidden {
-  display: none;
-}
-
+/* heder and nav ber */
 header {
   display: flex;
   justify-content: space-between;
@@ -26,8 +23,19 @@ nav {
   gap: 2em;
 }
 
-canvas{
-    background-color: #fff;
-    border: 1px solid black;
-    
+/* editor selection  */
+.meme-editor-page {
+  width: 70vw;
+  height: 80vh;
+}
+
+
+
+canvas {
+  background-color: #fff;
+  border: 1px solid black;
+}
+
+.hidden {
+  display: none;
 }

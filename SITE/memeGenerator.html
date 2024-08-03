@@ -10,7 +10,7 @@
   <body onload="onInit()">
     <header>
       <h1>Meme it</h1>
-      <nav class="tool-bar">
+      <nav class="nav-ber">
         <li>
           <a class="gallery">Gallery</a>
         </li>
@@ -23,7 +23,7 @@
       </nav>
     </header>
 
-    <section class="meme-gallery-page hidden">
+    <section class="meme-gallery-page ">
       <main>
         <section class="filter-search-container">
           <input
@@ -44,20 +44,72 @@
 
         <section class="memes-gallery-container">
           <article class="meme-img">
-            <img src="img/9.jpg" alt="funny meme" onclick="onClickedMeme(this)" />
+            <img src="img/1.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
           </article>
           <article class="meme-img">
-            <img src="img/16.jpg" alt="funny meme" onclick="onClickedMeme(this)" />
+            <img src="img/2.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
           </article>
+          <!-- <article class="meme-img">
+            <img src="img/3.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
+          </article>
+          <article class="meme-img">
+            <img src="img/4.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
+          </article>
+          <article class="meme-img">
+            <img src="img/5.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
+          </article>
+          <article class="meme-img">
+            <img src="img/6.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
+          </article>
+          <article class="meme-img">
+            <img src="img/7.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
+          </article>
+          <article class="meme-img">
+            <img src="img/8.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
+          </article>
+          <article class="meme-img">
+            <img src="img/9.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
+          </article>
+          <article class="meme-img">
+            <img src="img/10.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
+          </article>
+          <article class="meme-img">
+            <img src="img/11.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
+          </article>
+          <article class="meme-img">
+            <img src="img/12.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
+          </article>
+          <article class="meme-img">
+            <img src="img/13.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
+          </article>
+          <article class="meme-img">
+            <img src="img/14.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
+          </article>
+          <article class="meme-img">
+            <img src="img/15.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
+          </article>
+          <article class="meme-img">
+            <img src="img/16.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
+          </article>
+          </article>
+          <article class="meme-img">
+            <img src="img/17.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
+          </article>
+          </article>
+          <article class="meme-img">
+            <img src="img/18.jpg" alt="funny meme" onclick="onSelectMeme(this)" />
+          </article> -->
         </section>
       </main>
     </section>
 
     <section class="meme-editor-page">
       <main>
-        <canvas class="meme-editor-canvas" width="500px" height="600px"></canvas>
+        <div class="meme-editor-canvas">
+            <canvas  width="500px" height="600px"></canvas>
+        </div>
         <section class="editor-tools">
-          <input type="text" placeholder="Add Text Here" oninput="onAddTxt(this)" />
+          <input type="text" placeholder="Add Text Here" oninput="onAddTxt(this.value)" />
         </section>
       </main>
     </section>
