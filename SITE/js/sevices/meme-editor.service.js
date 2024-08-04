@@ -14,9 +14,14 @@ var gMeme = {
     {
       txt: 'Add Text Here',
       size: 20,
+      borderColor:'#15C1B5',
       color: 'white',
     },
   ],
+}
+
+function setCanvasData(date) {
+  gMeme = {...gMeme, ...date}
 }
 
 function getMeme() {

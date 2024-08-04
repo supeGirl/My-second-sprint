@@ -68,6 +68,22 @@
         <section class="editor-tools">
           <div class="actions">
             <input id="text-input" type="text" placeholder="Add Text Here" oninput="onAddTxt(this.value)" />
+            <input onchange="onChangeBorderColor(value)"
+            type="color"
+            id="border-color"
+            name="border-color"
+            title="border-color"
+            value="#15C1B5"
+            />
+            
+            <input onchange="onChangeFillColor(value)"
+            type="color"
+            id="fill-color"
+            name="fill-color"
+            title="background-color"
+            value="#ffffff"
+            
+            />
 
             <a href="#" class="btn  download-btn fa-solid fa-download" onclick="onDownloadCanvas(this)" download="my-img.jpg"> download</a>
 
