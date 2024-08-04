@@ -1,41 +1,49 @@
+@import url(./mq.css);
+@import url(./header.css);
+@import url(./gallery.css);
+@import url(./editor.css);
+
 * {
   box-sizing: border-box;
 }
 
-html,
+/* BODY AND MAIN LAYOUT */
+
 body {
   margin: 0;
   background-color: lightgray;
+  min-height: 100vh;
 }
 
-/* heder and nav ber */
-header {
-  display: flex;
-  position: relative;
-  margin: auto;
-  justify-content: space-between;
+.main-layout {
+  display: grid;
+  grid-template-columns: 0 1fr 0;
+  grid-template-rows: auto auto 1fr;
+  gap: 10px;
+}
+
+img{
+  width: 100%;
+}
+
+
+
+/* FOOTER */
+footer {
+  grid-column: 1/-1;
+  grid-row: 4;
+  text-align: center;
   padding: 20px;
-  align-items: center;
+  background-color: #333;
+  color: white;
+  font-size: 1.5em;
+
 }
 
-nav {
-  display: flex;
-  list-style-type: none;
-  justify-content: space-around;
-  gap: 2em;
-}
+/* HELPER */
 
-/* editor selection  */
-.meme-editor-page {
-  width: 70vw;
-  height: 80vh;
-}
-
-
-
-canvas {
-  background-color: #fff;
-  border: 1px solid black;
+li {
+  display: inline;
 }
 
 .hidden {

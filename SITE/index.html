@@ -7,20 +7,25 @@
 
     <title>Meme Generator</title>
   </head>
-  <body onload="onInit()">
-    <header>
-      <h1>Meme it</h1>
-      <nav class="nav-ber">
-        <li>
-          <a class="gallery">Gallery</a>
-        </li>
-        <li>
-          <a class="memes">Memes</a>
-        </li>
-        <li>
-          <a class="info">About</a>
-        </li>
+  <body onload="onInit()" class="main-layout">
+    
+    <header class="main-header-container">
+      <h1 class="logo">Meme it</h1>
+      <nav class="nav-ber-container">
+        <ul class="main-nav">
+          <li>
+            <a class="gallery">Gallery</a>
+          </li>
+          <li>
+            <a class="memes">Memes</a>
+          </li>
+          <li>
+            <a class="info">About</a>
+          </li>
+        </ul>
+        <button class="close-menu-btn " onclick="onToggleMenu()">x</button>
       </nav>
+      <button class="btn-toggle-menu" onclick="onToggleMenu()">☰</button>
     </header>
 
     <section class="meme-gallery-page ">
@@ -42,7 +47,7 @@
           </datalist>
         </section>
 
-        <section class="memes-gallery-container ">
+        <section class="memes-gallery-container">
           <article class="meme-img">
             <img src="img/1.jpg" alt="funny angry meme" onclick="onSelectMeme(this)" />
           </article>
@@ -56,16 +61,18 @@
     <section class="meme-editor-page hidden">
       <main>
         <div class="meme-editor-canvas">
-            <canvas  width="500px" height="600px"></canvas>
+          <canvas width="500px" height="600px"></canvas>
         </div>
         <section class="editor-tools">
-          <input id="text-input" type="text" placeholder="Add Text Here" oninput="onAddTxt(this.value)" />
+          <div class="actions">
+            <input id="text-input" type="text" placeholder="Add Text Here" oninput="onAddTxt(this.value)" />
+          </div>
         </section>
       </main>
     </section>
 
     <footer>
-        <small>&copy;2024 All rights reserved. Keren Vasserman.</small>
+      <small>&copy;2024 All rights reserved. Keren Vasserman.</small>
     </footer>
     <script src="js/sevices/meme-editor.service.js"></script>
     <script src="js/controllers/gallery.controller.js"></script>

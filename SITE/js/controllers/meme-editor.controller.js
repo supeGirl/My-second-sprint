@@ -81,3 +81,7 @@ function renderTxt() {
     gCtx.fillText(gCurrentText, gElCanvas.width / 2, txtPositionY)
   }
 }
+
+function onToggleMenu() {
+  document.body.classList.toggle('menu-open')
+}

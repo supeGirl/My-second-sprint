@@ -1,0 +1,20 @@
+/* gallery selection */
+
+.filter-search-container {
+    display: flex;
+ justify-content: center;
+    place-content: center;
+    padding: 10px;
+}
+
+.meme-gallery-page {
+  grid-column: 1/-1;
+  grid-row: 3;
+}
+
+.memes-gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}

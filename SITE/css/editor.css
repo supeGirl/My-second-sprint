@@ -1,0 +1,38 @@
+/* editor selection  */
+.meme-editor-page {
+
+  width: 80vw;
+  grid-column: 2/3;
+  grid-row: 3;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
+}
+
+.actions {
+  display: flex;
+  width: 100%;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+#text-input {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* CANVAS */
+canvas {
+  background-color: #fff;
+  border: 1px solid black;
+  width: 100%;
+  height: auto;
+}
