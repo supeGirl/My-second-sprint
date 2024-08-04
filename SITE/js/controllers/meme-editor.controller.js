@@ -26,6 +26,11 @@ function onSelectMeme(elMeme) {
   coverCanvasWithMeme(elMeme)
 }
 
+function onDownloadCanvas(elLink){
+  const imgContent = gElCanvas.toDataURL('image/jpeg')
+  elLink.href = imgContent
+}
+
 function coverCanvasWithMeme(elMeme) {
   gElCanvas.height = (elMeme.naturalHeight / elMeme.naturalWidth) * gElCanvas.width
   gCtx.drawImage(elMeme, 0, 0, gElCanvas.width, gElCanvas.height)
