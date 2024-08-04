@@ -6,11 +6,9 @@
     <link rel="stylesheet" href="./css/style.css" />
     <script src="https://kit.fontawesome.com/cea3baaf08.js" crossorigin="anonymous"></script>
 
-
     <title>Meme Generator</title>
   </head>
   <body onload="onInit()" class="main-layout">
-    
     <header class="main-header-container">
       <h1 class="logo">Meme it</h1>
       <nav class="nav-ber-container">
@@ -25,7 +23,7 @@
             <a class="info">About</a>
           </li>
         </ul>
-        <button class="close-menu-btn " onclick="onToggleMenu()">x</button>
+        <button class="close-menu-btn" onclick="onToggleMenu()">x</button>
       </nav>
       <button class="btn-toggle-menu" onclick="onToggleMenu()">☰</button>
     </header>
@@ -66,27 +64,30 @@
           <canvas width="500px" height="600px"></canvas>
         </div>
         <section class="editor-tools">
-          <div class="actions">
+          <div class="actions-container">
             <input id="text-input" type="text" placeholder="Add Text Here" oninput="onAddTxt(this.value)" />
-            <input onchange="onChangeBorderColor(value)"
-            type="color"
-            id="border-color"
-            name="border-color"
-            title="border-color"
-            value="#15C1B5"
-            />
-            
-            <input onchange="onChangeFillColor(value)"
-            type="color"
-            id="fill-color"
-            name="fill-color"
-            title="background-color"
-            value="#ffffff"
-            
-            />
+            <div class="action-controllers">
+              <input
+                onchange="onChangeBorderColor(value)"
+                type="color"
+                id="border-color"
+                name="border-color"
+                title="border-color"
+                value="#15C1B5"
+                class="color-input border"
+              />
 
-            <a href="#" class="btn  download-btn fa-solid fa-download" onclick="onDownloadCanvas(this)" download="my-img.jpg"> download</a>
-
+              <input
+                onchange="onChangeFillColor(value)"
+                type="color"
+                id="fill-color"
+                name="fill-color"
+                title="background-color"
+                value="#ffffff"
+                class="color-input fill"
+              />
+            </div>
+            <a href="#" class="btn download-btn" onclick="onDownloadCanvas(this)" download="my-img.jpg">download</a>
           </div>
         </section>
       </main>

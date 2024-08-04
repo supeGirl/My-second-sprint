@@ -35,8 +35,8 @@ function getSelectedLine() {
 function setLineTxt(txt) {
   const selectedLine = getSelectedLine()
 
-  console.log('txt', txt)
-  console.log('selectedLine', selectedLine)
+  // console.log('txt', txt)
+  // console.log('selectedLine', selectedLine)
 
   if (!selectedLine) {
     selectedLine.txt = 'Add Text Here'

@@ -10,14 +10,15 @@ function onInit() {
   gCtx = gElCanvas.getContext('2d')
   renderGallery()
   resizeCanvas()
-
+  // insertInitFromDate()
   window.addEventListener('resize', resizeCanvas)
+
 }
 
 function onAddTxt(elTxt) {
   setLineTxt(elTxt)
   gCurrentText = elTxt
-  console.log('Updated Text:', getSelectedLine().txt)
+  // console.log('Updated Text:', getSelectedLine().txt)
   renderMeme()
 }
 
@@ -26,7 +27,7 @@ function onSelectMeme(elMeme) {
   coverCanvasWithMeme(elMeme)
 }
 
-function onDownloadCanvas(elLink){
+function onDownloadCanvas(elLink) {
   const imgContent = gElCanvas.toDataURL('image/jpeg')
   elLink.href = imgContent
 }
@@ -35,6 +36,14 @@ function coverCanvasWithMeme(elMeme) {
   gElCanvas.height = (elMeme.naturalHeight / elMeme.naturalWidth) * gElCanvas.width
   gCtx.drawImage(elMeme, 0, 0, gElCanvas.width, gElCanvas.height)
   renderTxt()
+}
+
+function onChangeBorderColor(borderColor) {
+  setCanvasData({borderColor})
+}
+
+function onChangeFillColor(fillColor) {
+  setCanvasData({fillColor})
 }
 
 function resizeCanvas() {
@@ -65,10 +74,10 @@ function renderMeme() {
   if (img) {
     const elMeme = new Image()
     elMeme.src = img.url
-    elMeme.onload = () =>  {
-        gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
-        coverCanvasWithMeme(elMeme)
-        renderTxt()
+    elMeme.onload = () => {
+      gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+      coverCanvasWithMeme(elMeme)
+      renderTxt()
     }
   }
 }
@@ -90,3 +99,21 @@ function renderTxt() {
 function onToggleMenu() {
   document.body.classList.toggle('menu-open')
 }
+
+// function insertInitFromDate(){
+
+//   const {selectedImgId, selectedLineIdx, lines} = getMeme()
+//   if(lines && lines.length > 0 && selectedLineIdx < lines.length){
+//     const [{txt, size, borderColor, fillColor}] = lines
+
+    
+//     document.getElementById('text-input').value = txt
+//     document.getElementById('border-color').value = borderColor
+//     document.getElementById('fill-color').style =fillColor
+//     // document.getElementById('size-input').value = size
+//   }else{
+//     console.error('Invalid line index or no lines available')
+//   }
+
+
+// }
