@@ -7,18 +7,18 @@ let gCurrentMeme
 let gCurrentText = 'Add Text Here'
 
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
-const PIXEL_RATIO = (function () {
-  const ctx = document.createElement('canvas').getContext('2d')
-  const dpr = window.devicePixelRatio || 1
-  const bsr =
-    ctx.webkitBackingStorePixelRatio ||
-    ctx.mozBackingStorePixelRatio ||
-    ctx.msBackingStorePixelRatio ||
-    ctx.oBackingStorePixelRatio ||
-    ctx.backingStorePixelRatio ||
-    1
-  return dpr / bsr
-})()
+// const PIXEL_RATIO = (function () {
+//   const ctx = document.createElement('canvas').getContext('2d')
+//   const dpr = window.devicePixelRatio || 1
+//   const bsr =
+//     ctx.webkitBackingStorePixelRatio ||
+//     ctx.mozBackingStorePixelRatio ||
+//     ctx.msBackingStorePixelRatio ||
+//     ctx.oBackingStorePixelRatio ||
+//     ctx.backingStorePixelRatio ||
+//     1
+//   return dpr / bsr
+// })()
 
 function onInit() {
   gElCanvas = document.querySelector('canvas')
@@ -136,6 +136,10 @@ function onChangeBorderColor(borderColor) {
   console.log('borderColor', borderColor)
 }
 
+document.getElementById('border-color').addEventListener('click', function(event) {
+  event.stopPropagation()
+})
+
 function onChangeFillColor(fillColor) {
   updateLineProperty('color', fillColor)
   document.documentElement.style.setProperty('--fill-icon-color', fillColor)
@@ -238,21 +242,20 @@ function handleMouseMove(pos) {
 
 function handleMouseUp() {
   gIsDragging = false
-  // Additional logic for handling end of dragging can be added here
 }
 
 function getEvPos(ev) {
   let pos = {
-    x: ev.offsetX / PIXEL_RATIO,
-    y: ev.offsetY / PIXEL_RATIO,
+    x: ev.offsetX,
+    y: ev.offsetY 
   }
 
   if (TOUCH_EVS.includes(ev.type)) {
     ev.preventDefault()
     ev = ev.changedTouches[0]
     pos = {
-      x: (ev.pageX - ev.target.offsetLeft - ev.target.clientLeft) / PIXEL_RATIO,
-      y: (ev.pageY - ev.target.offsetTop - ev.target.clientTop) / PIXEL_RATIO,
+      x: (ev.pageX - ev.target.offsetLeft - ev.target.clientLeft) ,
+      y: (ev.pageY - ev.target.offsetTop - ev.target.clientTop) ,
     }
   }
   return pos

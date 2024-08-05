@@ -73,7 +73,7 @@
               
               <button class="color-button btn border" onclick="document.getElementById('border-color').click()"></button>
               <input
-                onchange="onChangeBorderColor(value)"
+                onchange="onChangeBorderColor(this.value)"
                 type="color"
                 id="border-color"
                 name="border-color"
@@ -85,7 +85,7 @@
 
                 <button class="color-button btn fill" onclick="document.getElementById('fill-color').click()">
                   <input
-                  onchange="onChangeFillColor(value)"
+                  onchange="onChangeFillColor(this.value)"
                   type="color"
                   id="fill-color"
                   name="fill-color"
