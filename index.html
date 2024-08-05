@@ -14,7 +14,7 @@
       <nav class="nav-ber-container">
         <ul class="main-nav">
           <li>
-            <a class="gallery">Gallery</a>
+            <a class="gallery" onclick="onOpenGallery()">Gallery</a>
           </li>
           <li>
             <a class="memes">Memes</a>
@@ -48,12 +48,7 @@
         </section>
 
         <section class="memes-gallery-container">
-          <article class="meme-img">
-            <img src="img/1.jpg" alt="funny angry meme" onclick="onSelectMeme(this)" />
-          </article>
-          <article class="meme-img">
-            <img src="img/2.jpg" alt="cute dog meme" onclick="onSelectMeme(this)" />
-          </article>
+         
         </section>
       </main>
     </section>
@@ -65,8 +60,10 @@
         </div>
         <section class="editor-tools">
           <div class="actions-container">
-            <input id="text-input" type="text" placeholder="Add Text Here" oninput="onAddTxt(this.value)" />
+            <input id="text-input" type="text" placeholder="Add Text Here" oninput="onAddTxt(this.value)"/>
             <div class="action-controllers">
+              <button class="color-button border" onclick="document.getElementById('border-color').click()"></button>
+
               <input
                 onchange="onChangeBorderColor(value)"
                 type="color"
@@ -75,16 +72,18 @@
                 title="border-color"
                 value="#15C1B5"
                 class="color-input border"
-              />
-
-              <input
-                onchange="onChangeFillColor(value)"
-                type="color"
-                id="fill-color"
-                name="fill-color"
-                title="background-color"
-                value="#ffffff"
-                class="color-input fill"
+                style="display: none;"
+                />
+                <button class="color-button fill" onclick="document.getElementById('fill-color').click()">
+                  <input
+                  onchange="onChangeFillColor(value)"
+                  type="color"
+                  id="fill-color"
+                  name="fill-color"
+                  title="background-color"
+                  value="#ffffff"
+                  class="color-input fill"
+                  style="display: none;"
               />
             </div>
             <a href="#" class="btn download-btn" onclick="onDownloadCanvas(this)" download="my-img.jpg">download</a>
@@ -97,6 +96,7 @@
       <small>&copy;2024 All rights reserved. Keren Vasserman.</small>
     </footer>
     <script src="./js/sevices/meme-editor.service.js"></script>
+    <script src="./js/sevices/gallery.service.js"></script>
     <script src="./js/controllers/gallery.controller.js"></script>
     <script src="./js/controllers/meme-editor.controller.js"></script>
   </body>

@@ -16,10 +16,13 @@ function onInit() {
 }
 
 function onAddTxt(elTxt) {
-  setLineTxt(elTxt)
-  gCurrentText = elTxt
-  // console.log('Updated Text:', getSelectedLine().txt)
-  renderMeme()
+  if (elTxt.trim() === '') {
+    setLineTxt('Add Text Here') 
+  } else {
+    setLineTxt(elTxt) 
+  }
+  gCurrentText = elTxt 
+  renderMeme() 
 }
 
 function onSelectMeme(elMeme) {
@@ -39,11 +42,18 @@ function coverCanvasWithMeme(elMeme) {
 }
 
 function onChangeBorderColor(borderColor) {
-  setCanvasData({borderColor})
+  updateLineProperty('color', borderColor)
+  document.documentElement.style.setProperty('--border-icon-color', borderColor)
+  renderMeme()
+  // console.log('borderColor', borderColor)
+  
 }
 
 function onChangeFillColor(fillColor) {
-  setCanvasData({fillColor})
+  updateLineProperty('color', fillColor)
+  document.documentElement.style.setProperty('--fill-icon-color', fillColor)
+  renderMeme()
+  // console.log('fillColor', fillColor)
 }
 
 function resizeCanvas() {
@@ -86,12 +96,16 @@ function renderTxt() {
   const selectedLine = getSelectedLine()
   if (selectedLine && selectedLine.txt) {
     gCtx.font = `${selectedLine.size}px Arial`
+
+    
+    gCtx.borderColor = selectedLine.borderColor
     gCtx.fillStyle = selectedLine.color || 'white'
     gCtx.textAlign = 'center'
 
     const txtOffsetFromTop = 20
     const txtPositionY = txtOffsetFromTop + selectedLine.size
 
+    gCtx.strokeText(gCurrentText, gElCanvas.width / 2, txtPositionY)
     gCtx.fillText(gCurrentText, gElCanvas.width / 2, txtPositionY)
   }
 }

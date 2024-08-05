@@ -1,12 +1,5 @@
 'use strict'
 
-var gImgs = [
-  {id: 1, url: 'img/1.jpg', keywords: ['funny', 'angry']},
-  {id: 2, url: 'img/2.jpg', keywords: ['cute', 'dog']},
-  {id: 3, url: 'img/3.jpg', keywords: ['cute', 'dog']},
-  {id: 4, url: 'img/4.jpg', keywords: ['cute', 'dog']},
-]
-
 var gMeme = {
   selectedImgId: 1,
   selectedLineIdx: 0,
@@ -14,18 +7,20 @@ var gMeme = {
     {
       txt: 'Add Text Here',
       size: 20,
-      borderColor:'#15C1B5',
+      borderColor: '#15C1B5',
       color: 'white',
+    
     },
   ],
 }
 
-function setCanvasData(date) {
-  gMeme = {...gMeme, ...date}
-}
-
 function getMeme() {
   return gMeme
+}
+
+
+function setCanvasData(date) {
+  gMeme = {...gMeme, ...date}
 }
 
 function getSelectedLine() {
@@ -34,17 +29,22 @@ function getSelectedLine() {
 
 function setLineTxt(txt) {
   const selectedLine = getSelectedLine()
-
-  // console.log('txt', txt)
-  // console.log('selectedLine', selectedLine)
-
-  if (!selectedLine) {
-    selectedLine.txt = 'Add Text Here'
-  } else {
+  if (selectedLine) {
     selectedLine.txt = txt
+  } else {
+    console.error('No line selected')
   }
 }
 
-function setImg(id) {
-  gMeme.selectedImgId = id
+function updateLineProperty(property, value) {
+  const selectedLine = getSelectedLine()
+  if (selectedLine) {
+    if (property === 'borderColor') {
+      selectedLine.borderColor = value
+    } else if (property === 'color') {
+      selectedLine.color = value
+    }
+  }
 }
+
+
