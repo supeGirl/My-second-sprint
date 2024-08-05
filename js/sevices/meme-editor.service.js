@@ -9,6 +9,8 @@ var gMeme = {
       size: 20,
       borderColor: '#15C1B5',
       color: 'white',
+      x:150,
+      y:50,
     
     },
   ],
@@ -39,11 +41,9 @@ function setLineTxt(txt) {
 function updateLineProperty(property, value) {
   const selectedLine = getSelectedLine()
   if (selectedLine) {
-    if (property === 'borderColor') {
-      selectedLine.borderColor = value
-    } else if (property === 'color') {
-      selectedLine.color = value
-    }
+    selectedLine[property] = value
+
+
   }
 }
 

@@ -60,13 +60,18 @@
         </div>
         <section class="editor-tools">
           <div class="actions-container">
-            <input id="text-input" type="text" placeholder="Add Text Here" oninput="onAddTxt(this.value)"/>
-            <div class="action-controllers">
+            <div class="line-actions">
 
-              <button class="font-button bigger-size" onclick="onUpdateLineSize(1)"></button>
-              <button class="font-button smaller-size" onclick="onUpdateLineSize(-1)"></button>
+              <input id="text-input" type="text" placeholder="Add Text Here" oninput="onAddTxt(this.value)"/>
+              <button class="switch-line btn"onclick="onSwitchLine()"></button>
+              <button class="add-line btn" onclick="onAddLine()"></button>
+            </div>
+              <div class="action-style">
+                
+              <button class="font-button  btn bigger-size" onclick="onUpdateLineSize(1)"></button>
+              <button class="font-button btn smaller-size" onclick="onUpdateLineSize(-1)"></button>
               
-              <button class="color-button border" onclick="document.getElementById('border-color').click()"></button>
+              <button class="color-button btn border" onclick="document.getElementById('border-color').click()"></button>
               <input
                 onchange="onChangeBorderColor(value)"
                 type="color"
@@ -78,7 +83,7 @@
                 style="display: none;"
                 />
 
-                <button class="color-button fill" onclick="document.getElementById('fill-color').click()">
+                <button class="color-button btn fill" onclick="document.getElementById('fill-color').click()">
                   <input
                   onchange="onChangeFillColor(value)"
                   type="color"
