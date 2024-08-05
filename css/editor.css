@@ -61,6 +61,11 @@ canvas {
   flex: 0 0 auto; /* Prevent buttons from stretching */
 }
 
+.color-input {
+  display: block;
+  position: absolute; 
+}
+
 
 .action-style {
   display: flex;

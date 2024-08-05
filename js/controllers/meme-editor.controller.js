@@ -2,15 +2,30 @@
 var gElCanvas
 var gCtx
 
+let gIsDragging = false
 let gCurrentMeme
 let gCurrentText = 'Add Text Here'
+
+const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
+const PIXEL_RATIO = (function () {
+  const ctx = document.createElement('canvas').getContext('2d')
+  const dpr = window.devicePixelRatio || 1
+  const bsr =
+    ctx.webkitBackingStorePixelRatio ||
+    ctx.mozBackingStorePixelRatio ||
+    ctx.msBackingStorePixelRatio ||
+    ctx.oBackingStorePixelRatio ||
+    ctx.backingStorePixelRatio ||
+    1
+  return dpr / bsr
+})()
 
 function onInit() {
   gElCanvas = document.querySelector('canvas')
   gCtx = gElCanvas.getContext('2d', {willReadFrequently: true})
   renderGallery()
   resizeCanvas()
-  window.addEventListener('resize', resizeCanvas)
+  addListeners()
 }
 
 function onSelectMeme(elMeme) {
@@ -43,7 +58,7 @@ function onAddLine() {
     x: gElCanvas.width / 2,
     y: gElCanvas.height - (40 + gMeme.lines.length * 30),
   }
-  gMeme.lines.push(newLine);
+  gMeme.lines.push(newLine)
   gMeme.selectedLineIdx = gMeme.lines.length - 1
   renderMeme()
 }
@@ -67,23 +82,22 @@ function renderTxt() {
   const meme = getMeme()
   const selectedLineIdx = meme.selectedLineIdx
 
-    meme.lines.forEach((line, idx) => {
-      gCtx.font = `${line.size}px Arial`
-      gCtx.textAlign = 'center'
-      gCtx.textBaseline = 'bottom'
+  meme.lines.forEach((line, idx) => {
+    gCtx.font = `${line.size}px Arial`
+    gCtx.textAlign = 'center'
+    gCtx.textBaseline = 'bottom'
 
-      gCtx.strokeStyle = line.borderColor
-      gCtx.fillStyle = line.color || 'white'
-      gCtx.lineWidth = 2
+    gCtx.strokeStyle = line.borderColor
+    gCtx.fillStyle = line.color || 'white'
+    gCtx.lineWidth = 2
 
-      gCtx.strokeText(line.txt, line.x, line.y)
-      gCtx.fillText(line.txt, line.x, line.y)
+    gCtx.strokeText(line.txt, line.x, line.y)
+    gCtx.fillText(line.txt, line.x, line.y)
 
-      if (idx === selectedLineIdx) {
-        drawFrame(line)
-      }
-    })
-
+    if (idx === selectedLineIdx) {
+      drawFrame(line)
+    }
+  })
 }
 
 function resizeCanvas() {
@@ -157,4 +171,89 @@ function onToggleMenu() {
 function onDownloadCanvas(elLink) {
   const imgContent = gElCanvas.toDataURL('image/jpeg')
   elLink.href = imgContent
+}
+
+function addListeners() {
+  addMouseListeners()
+  addTouchListeners()
+  window.addEventListener('resize', resizeCanvas)
+}
+
+function addMouseListeners() {
+  gElCanvas.addEventListener('mousedown', onDown)
+  gElCanvas.addEventListener('mousemove', onMove)
+  document.addEventListener('mouseup', onUp)
+}
+
+function addTouchListeners() {
+  gElCanvas.addEventListener('touchstart', onDown)
+  gElCanvas.addEventListener('touchmove', onMove)
+  document.addEventListener('touchend', onUp)
+}
+
+function onDown(ev) {
+  const pos = getEvPos(ev)
+  gIsDragging = true
+  handleMouseDown(pos)
+}
+
+function onMove(ev) {
+  if (!gIsDragging) return
+  const pos = getEvPos(ev)
+  handleMouseMove(pos)
+}
+
+function onUp(ev) {
+  gIsDragging = false
+  handleMouseUp()
+}
+
+function handleMouseDown(pos) {
+  gMeme.lines.forEach((line, idx) => {
+    const textMetrics = gCtx.measureText(line.txt)
+    const textHeight = line.size
+    const lineX = line.x
+    const lineY = line.y - textHeight / 2
+
+    if (
+      pos.x >= lineX - textMetrics.width / 2 &&
+      pos.x <= lineX + textMetrics.width / 2 &&
+      pos.y >= lineY &&
+      pos.y <= lineY + textHeight
+    ) {
+      gMeme.selectedLineIdx = idx
+      renderMeme()
+    }
+  })
+}
+
+function handleMouseMove(pos) {
+  const selectedLine = getSelectedLine()
+  if (selectedLine && gIsDragging) {
+    selectedLine.x = pos.x
+    selectedLine.y = pos.y
+    renderMeme()
+  }
+}
+
+function handleMouseUp() {
+  gIsDragging = false
+  // Additional logic for handling end of dragging can be added here
+}
+
+function getEvPos(ev) {
+  let pos = {
+    x: ev.offsetX / PIXEL_RATIO,
+    y: ev.offsetY / PIXEL_RATIO,
+  }
+
+  if (TOUCH_EVS.includes(ev.type)) {
+    ev.preventDefault()
+    ev = ev.changedTouches[0]
+    pos = {
+      x: (ev.pageX - ev.target.offsetLeft - ev.target.clientLeft) / PIXEL_RATIO,
+      y: (ev.pageY - ev.target.offsetTop - ev.target.clientTop) / PIXEL_RATIO,
+    }
+  }
+  return pos
 }
