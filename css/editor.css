@@ -1,6 +1,6 @@
 :root {
-  --border-icon-color: #000;
-  --fill-icon-color: #000;
+  --border-icon-color: #15C1B5;
+  --fill-icon-color: #ffffff;
 }
 
 /* editor selection  */
@@ -12,6 +12,15 @@
   flex-direction: row;
   align-items: start;
   justify-content: center;
+}
+
+.meme-editor-canvas {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* CANVAS */
@@ -40,24 +49,68 @@ canvas {
 
 }
 
-.color-button {
+.color-button ,.font-button{
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 25px;
-  background-color: none;
+  background-color: rgba(232, 230, 230, 0.841);
   border: 1px solid #ccc;
   border-radius: 5%;
   cursor: pointer;
   position: relative;
 }
 
+.bigger-size::before {
+  content: '\f031'; /* Unicode for the desired icon */
+  font-family: 'FontAwesome';
+  position: absolute;
+  font-size: x-large;
+  left: 10px; 
+  top: 55%;
+  transform: translateY(-50%);
+  color: black;
+}
+
+.bigger-size::after {
+  content: '+'; 
+  font-family: 'FontAwesome';
+  position: absolute;
+  font-size: large;
+  left: 30px; 
+  top: 55%;
+  transform: translateY(-50%);
+  color: black;
+}
+
+.smaller-size::before {
+  content: '\f031'; /* Unicode for the desired icon */
+  font-family: 'FontAwesome';
+  position: absolute;
+  font-size: x-large;
+  left: 10px; 
+  top: 55%;
+  transform: translateY(-50%);
+  color: black;
+}
+
+.smaller-size::after {
+  content: '-'; 
+  font-family: 'FontAwesome';
+  position: absolute;
+  font-size: xx-large;
+  left: 30px; 
+  top: 50%;
+  transform: translateY(-50%);
+  color: black;
+}
+
 .border::before {
   content: '\f55d'; /* Unicode for the desired icon */
   font-family: 'FontAwesome';
   position: absolute;
-  font-size: xx-large;
-  left: 10px; 
+  font-size: x-large;
+  left: 15px; 
   top: 50%;
   transform: translateY(-50%);
   color: var(--border-icon-color);
@@ -67,12 +120,13 @@ canvas {
   content: '\f576'; /* Unicode for the desired icon */
   font-family: 'FontAwesome';
   position: absolute;
-  font-size: xx-large;
-  left: 10px; 
+  font-size: x-large;
+  left: 15px; 
   top: 50%;
   transform: translateY(-50%);
   color: var(--fill-icon-color);
 }
+
 #text-input {
   width: 80%;
   padding: 10px;

@@ -7,10 +7,9 @@ let gCurrentText = 'Add Text Here'
 
 function onInit() {
   gElCanvas = document.querySelector('canvas')
-  gCtx = gElCanvas.getContext('2d')
+  gCtx = gElCanvas.getContext('2d', { willReadFrequently: true })
   renderGallery()
   resizeCanvas()
-  // insertInitFromDate()
   window.addEventListener('resize', resizeCanvas)
 
 }
@@ -42,10 +41,10 @@ function coverCanvasWithMeme(elMeme) {
 }
 
 function onChangeBorderColor(borderColor) {
-  updateLineProperty('color', borderColor)
+  updateLineProperty('borderColor', borderColor)
   document.documentElement.style.setProperty('--border-icon-color', borderColor)
   renderMeme()
-  // console.log('borderColor', borderColor)
+  console.log('borderColor', borderColor)
   
 }
 
@@ -57,24 +56,33 @@ function onChangeFillColor(fillColor) {
 }
 
 function resizeCanvas() {
-  const elContainer = document.querySelector('.meme-editor-canvas')
-  const newWidth = elContainer.clientWidth - 10
-  const newHeight = (gElCanvas.height / gElCanvas.width) * newWidth
+  const elContainer = document.querySelector('.meme-editor-canvas');
+  const aspectRatio = gElCanvas.width / gElCanvas.height;
+  const newWidth = elContainer.clientWidth - 10;
+  const newHeight = newWidth / aspectRatio;
 
   // Save the current image data
-  const imageData = gCtx.getImageData(0, 0, gElCanvas.width, gElCanvas.height)
+  const imageData = gCtx.getImageData(0, 0, gElCanvas.width, gElCanvas.height);
 
   // Resize the canvas
-  gElCanvas.width = newWidth
-  gElCanvas.height = newHeight
+  gElCanvas.width = newWidth;
+  gElCanvas.height = newHeight;
 
   // Clear the canvas
-  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 
-  // Restore the canvas content with scaling
-  gCtx.putImageData(imageData, 0, 0, 0, 0, newWidth, newHeight)
+  // Create a new canvas to draw the scaled image data
+  const tempCanvas = document.createElement('canvas');
+  tempCanvas.width = imageData.width;
+  tempCanvas.height = imageData.height;
+  const tempCtx = tempCanvas.getContext('2d');
+  tempCtx.putImageData(imageData, 0, 0);
 
-  renderMeme()
+  // Draw the scaled image data on the resized canvas
+  gCtx.drawImage(tempCanvas, 0, 0, tempCanvas.width, tempCanvas.height, 0, 0, gElCanvas.width, gElCanvas.height);
+
+  renderMeme();
+
 }
 
 function renderMeme() {
@@ -98,7 +106,7 @@ function renderTxt() {
     gCtx.font = `${selectedLine.size}px Arial`
 
     
-    gCtx.borderColor = selectedLine.borderColor
+    gCtx.strokeStyle = selectedLine.borderColor
     gCtx.fillStyle = selectedLine.color || 'white'
     gCtx.textAlign = 'center'
 
@@ -114,20 +122,12 @@ function onToggleMenu() {
   document.body.classList.toggle('menu-open')
 }
 
-// function insertInitFromDate(){
+function onUpdateLineSize(diff) {
+  const selectedLine = getSelectedLine()
+  if (selectedLine) {
+    selectedLine.size += diff
+    if (selectedLine.size < 10) selectedLine.size = 10  // Ensure font size doesn't go too small
+    renderMeme()
+  }
+}
 
-//   const {selectedImgId, selectedLineIdx, lines} = getMeme()
-//   if(lines && lines.length > 0 && selectedLineIdx < lines.length){
-//     const [{txt, size, borderColor, fillColor}] = lines
-
-    
-//     document.getElementById('text-input').value = txt
-//     document.getElementById('border-color').value = borderColor
-//     document.getElementById('fill-color').style =fillColor
-//     // document.getElementById('size-input').value = size
-//   }else{
-//     console.error('Invalid line index or no lines available')
-//   }
-
-
-// }

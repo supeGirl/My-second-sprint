@@ -8,7 +8,6 @@
 }
 
 /* BODY AND MAIN LAYOUT */
-
 body {
   margin: 0;
   background-color: lightgray;
@@ -27,21 +26,18 @@ img{
 }
 
 
-
 /* FOOTER */
 footer {
   grid-column: 1/-1;
   grid-row: 4;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
   background-color: #333;
   color: white;
   font-size: 1.5em;
-
 }
 
 /* HELPER */
-
 li {
   display: inline;
 }

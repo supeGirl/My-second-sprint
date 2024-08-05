@@ -62,8 +62,11 @@
           <div class="actions-container">
             <input id="text-input" type="text" placeholder="Add Text Here" oninput="onAddTxt(this.value)"/>
             <div class="action-controllers">
-              <button class="color-button border" onclick="document.getElementById('border-color').click()"></button>
 
+              <button class="font-button bigger-size" onclick="onUpdateLineSize(1)"></button>
+              <button class="font-button smaller-size" onclick="onUpdateLineSize(-1)"></button>
+              
+              <button class="color-button border" onclick="document.getElementById('border-color').click()"></button>
               <input
                 onchange="onChangeBorderColor(value)"
                 type="color"
@@ -74,6 +77,7 @@
                 class="color-input border"
                 style="display: none;"
                 />
+
                 <button class="color-button fill" onclick="document.getElementById('fill-color').click()">
                   <input
                   onchange="onChangeFillColor(value)"
