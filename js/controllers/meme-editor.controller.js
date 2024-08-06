@@ -7,25 +7,14 @@ let gCurrentMeme
 let gCurrentText = 'Add Text Here'
 
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
-// const PIXEL_RATIO = (function () {
-//   const ctx = document.createElement('canvas').getContext('2d')
-//   const dpr = window.devicePixelRatio || 1
-//   const bsr =
-//     ctx.webkitBackingStorePixelRatio ||
-//     ctx.mozBackingStorePixelRatio ||
-//     ctx.msBackingStorePixelRatio ||
-//     ctx.oBackingStorePixelRatio ||
-//     ctx.backingStorePixelRatio ||
-//     1
-//   return dpr / bsr
-// })()
+
 
 function onInit() {
   gElCanvas = document.querySelector('canvas')
   gCtx = gElCanvas.getContext('2d', {willReadFrequently: true})
+  addListeners()
   renderGallery()
   resizeCanvas()
-  addListeners()
 }
 
 function onSelectMeme(elMeme) {

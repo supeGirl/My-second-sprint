@@ -1,15 +1,17 @@
 /* heder and nav ber */
 .main-header-container {
+  padding-inline: 25px;
   grid-column: 1 / -1;
   grid-row: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
-  color: white;
+  background-color: var(--secondary-color);
+  color:var(--word-color);
 }
 
 .logo {
+  /* later willbe logo */
   font-family: sans-serif;
   font-size: 2em;
   letter-spacing: 0.03em;
@@ -22,15 +24,14 @@
   align-items: center;
   justify-content: center;
   padding: 10px;
-  color: white;
+  color:var(--word-color);
   text-decoration: none;
   font-size: 1.2em;
   margin-inline-end: 0;
 }
 
 .main-nav li:hover a {
-  box-shadow: inset 0px -7px rgb(40, 40, 41);
-  background-color: gray;
+  background-color: var(--event-color);
 }
 
 

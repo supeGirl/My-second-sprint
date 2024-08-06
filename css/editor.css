@@ -1,5 +1,11 @@
 :root {
-  --border-icon-color: #15C1B5;
+  --primary-color: #eee0c9;
+
+  --secondary-color: #96b6c5;
+  --event-color: #adc4ce;
+  --word-color: #eee0c9;
+  --box-color: #fbfaf0;
+  --border-icon-color: #15c1b5;
   --fill-icon-color: #ffffff;
 }
 
@@ -12,15 +18,16 @@
   flex-direction: row;
   align-items: start;
   justify-content: center;
+  background-color: var(--primary-color);
 }
 
 .meme-editor-canvas {
-  width: 100%;
+  width: 90%;
   max-width: 100%;
-  height: auto;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  margin: 20px;
 }
 
 /* CANVAS */
@@ -32,33 +39,37 @@ canvas {
 }
 
 .actions-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  gap:10px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
+  align-items: center;
+  border-radius: 1.875em;
+  margin-inline-start: auto;
+  padding: 20px;
+  gap: 10px;
+  background-color: rgb(241, 238, 220);
+  border: 1px solid var(--word-color);
   align-items: center;
 }
 
 .line-actions {
   display: flex;
-  align-items: center; 
+  align-items: center;
   margin-top: 10px;
-  gap: 5px; 
+  gap: 5px;
 }
 
 .line-actions input#text-input {
   flex: 1;
   padding: 15px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--word-color);
   border-radius: 10px;
   font-size: 16px;
-  margin-bottom: 0; 
+  margin-bottom: 0;
 }
 
 .action-style .btn {
-  flex: 0 0 auto; 
+  flex: 0 0 auto;
 }
 
 .color-input {
@@ -70,25 +81,25 @@ canvas {
   border: none;
 }
 
-
 .action-style {
   display: flex;
   gap: 10px;
 }
 
-.color-button ,.font-button , .btn {
+.color-button,
+.font-button,
+.btn {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 25px;
-  background-color: rgba(232, 230, 230, 0.841);
-  border: 1px solid #ccc;
-  border-radius: 5%;
+  background-color: var(--box-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 1.2em;
   cursor: pointer;
-  gap:5px;
+  gap: 5px;
   position: relative;
 }
-
 
 .color-button::before,
 .font-button::before,
@@ -99,11 +110,10 @@ canvas {
   font-family: 'FontAwesome';
 }
 
-
 .switch-line::before {
   content: '\f0dc'; /* Unicode for the desired icon */
   font-size: xx-large;
-  left: 15px; 
+  left: 15px;
   top: 50%;
   color: black;
 }
@@ -111,7 +121,7 @@ canvas {
 .add-line::before {
   content: '+'; /* Unicode for the desired icon */
   font-size: x-large;
-  left: 15px; 
+  left: 15px;
   top: 50%;
   color: black;
 }
@@ -119,15 +129,15 @@ canvas {
 .bigger-size::before {
   content: '\f031'; /* Unicode for the desired icon */
   font-size: x-large;
-  left: 10px; 
+  left: 10px;
   top: 55%;
   color: black;
 }
 
 .bigger-size::after {
-  content: '+'; 
+  content: '+';
   font-size: large;
-  left: 30px; 
+  left: 30px;
   top: 55%;
   color: black;
 }
@@ -135,15 +145,15 @@ canvas {
 .smaller-size::before {
   content: '\f031'; /* Unicode for the desired icon */
   font-size: x-large;
-  left: 10px; 
+  left: 10px;
   top: 55%;
   color: black;
 }
 
 .smaller-size::after {
-  content: '-'; 
+  content: '-';
   font-size: xx-large;
-  left: 30px; 
+  left: 30px;
   top: 50%;
   color: black;
 }
@@ -151,7 +161,7 @@ canvas {
 .border::before {
   content: '\f55d'; /* Unicode for the desired icon */
   font-size: x-large;
-  left: 15px; 
+  left: 15px;
   top: 50%;
   color: var(--border-icon-color);
 }
@@ -159,12 +169,10 @@ canvas {
 .fill::before {
   content: '\f576'; /* Unicode for the desired icon */
   font-size: x-large;
-  left: 15px; 
+  left: 15px;
   top: 50%;
   color: var(--fill-icon-color);
 }
-
-
 
 .download-btn {
   display: flex;
@@ -176,7 +184,7 @@ canvas {
   text-decoration: none;
   border-radius: 4px;
   margin-top: 10px;
-  background-color: #28a745;
+  background-color: var(--secondary-color);
 }
 
 .download-btn::before {
@@ -190,5 +198,5 @@ canvas {
 }
 
 .download-btn:hover {
-  background-color: #247a38;
+  background-color: var(--event-color);
 }

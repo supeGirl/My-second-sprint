@@ -38,3 +38,9 @@ function onOpenGallery(){
   renderGallery()
   onToggleMenu()
 }
+
+function onInfoCanvas() {
+  const elModal = document.querySelector('.info-modal')
+
+  elModal.showModal()
+}
