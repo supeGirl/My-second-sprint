@@ -136,9 +136,7 @@ function onChangeBorderColor(borderColor) {
   console.log('borderColor', borderColor)
 }
 
-document.getElementById('border-color').addEventListener('click', function(event) {
-  event.stopPropagation()
-})
+
 
 function onChangeFillColor(fillColor) {
   updateLineProperty('color', fillColor)
