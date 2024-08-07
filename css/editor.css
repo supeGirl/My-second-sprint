@@ -59,7 +59,7 @@ canvas {
   gap: 5px;
 }
 
-.line-actions input#text-input {
+.line-actions input#text-input  {
   flex: 1;
   padding: 15px;
   border: 1px solid var(--word-color);
@@ -67,29 +67,40 @@ canvas {
   font-size: 16px;
   margin-bottom: 0;
 }
-.action-style  {
+
+#font-family-selector{
+  flex: 1;
+  padding: 10px;
+  margin-inline:10px ;
+  border: 1px solid var(--word-color);
+  border-radius: 10px;
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+.action-style {
   background-color: var(--secondary-color);
   padding: 20px;
   border-radius: 10px;
-  
-  }
+}
 
 .action-style .btn {
   flex: 0 0 auto;
 }
 
 .color-input {
-  display: block;
   width: 100%;
   height: 40px;
   padding: 0;
   margin: 0;
   border: none;
+  cursor: pointer;
 }
 
 .action-style {
   display: flex;
-  gap: 10px;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 .color-button,
@@ -99,7 +110,7 @@ canvas {
   align-items: center;
   justify-content: center;
   padding: 25px;
-  background-color: var(--box-color);
+  background-color: rgb(225, 218, 218);
   border: 1px solid var(--primary-color);
   border-radius: 1.2em;
   cursor: pointer;
@@ -114,6 +125,7 @@ canvas {
   position: absolute;
   transform: translateY(-50%);
   font-family: 'FontAwesome';
+  color: black;
 }
 
 .switch-line::before {
@@ -121,7 +133,6 @@ canvas {
   font-size: xx-large;
   left: 15px;
   top: 50%;
-  color: black;
 }
 
 .add-line::before {
@@ -129,7 +140,6 @@ canvas {
   font-size: x-large;
   left: 15px;
   top: 50%;
-  color: black;
 }
 
 .bigger-size::before {
@@ -137,7 +147,6 @@ canvas {
   font-size: x-large;
   left: 10px;
   top: 55%;
-  color: black;
 }
 
 .bigger-size::after {
@@ -145,7 +154,6 @@ canvas {
   font-size: large;
   left: 30px;
   top: 55%;
-  color: black;
 }
 
 .smaller-size::before {
@@ -153,7 +161,6 @@ canvas {
   font-size: x-large;
   left: 10px;
   top: 55%;
-  color: black;
 }
 
 .smaller-size::after {
@@ -161,7 +168,6 @@ canvas {
   font-size: xx-large;
   left: 30px;
   top: 50%;
-  color: black;
 }
 
 .border::before {
@@ -178,6 +184,60 @@ canvas {
   left: 15px;
   top: 50%;
   color: var(--fill-icon-color);
+}
+
+.fill::before {
+  content: '\f576'; /* Unicode for the desired icon */
+  font-size: x-large;
+  left: 15px;
+  top: 50%;
+  color: var(--fill-icon-color);
+}
+
+.line-up::before {
+  content: '\f062'; /* Unicode for the desired icon */
+  font-size: x-large;
+  left: 15px;
+  top: 50%;
+}
+
+.line-down::before {
+  content: '\f063'; /* Unicode for the desired icon */
+  font-size: x-large;
+  left: 15px;
+  top: 50%;
+}
+
+.remove-line::before {
+  content: '\f1f8'; /* Unicode for the desired icon */
+  font-size: x-large;
+  left: 15px;
+  top: 50%;
+}
+
+.right::before {
+  content: '\f038'; /* Unicode for the desired icon */
+  font-size: x-large;
+  left: 15px;
+  top: 50%;
+}
+.left::before {
+  content: '\f036'; /* Unicode for the desired icon */
+  font-size: x-large;
+  left: 15px;
+  top: 50%;
+}
+.center::before {
+  content: '\f037'; /* Unicode for the desired icon */
+  font-size: x-large;
+  left: 15px;
+  top: 50%;
+}
+.justify::before {
+  content: '\f039'; /* Unicode for the desired icon */
+  font-size: x-large;
+  left: 15px;
+  top: 50%;
 }
 
 .download-btn {

@@ -8,7 +8,6 @@ let gCurrentText = 'Add Text Here'
 
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
-
 function onInit() {
   gElCanvas = document.querySelector('canvas')
   gCtx = gElCanvas.getContext('2d', {willReadFrequently: true})
@@ -52,6 +51,23 @@ function onAddLine() {
   renderMeme()
 }
 
+function resizeCanvas() {
+  const elContainer = document.querySelector('.meme-editor-canvas')
+  const newWidth = elContainer.clientWidth - 10
+  const newHeight = (gElCanvas.height / gElCanvas.width) * newWidth
+
+  const imageData = gCtx.getImageData(0, 0, gElCanvas.width, gElCanvas.height)
+
+  gElCanvas.width = newWidth
+  gElCanvas.height = newHeight
+
+  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+
+  gCtx.putImageData(imageData, 0, 0, 0, 0, newWidth, newHeight)
+
+  renderMeme()
+}
+
 function renderMeme() {
   const meme = getMeme()
   const img = gImgs.find((img) => img.id === meme.selectedImgId)
@@ -72,8 +88,8 @@ function renderTxt() {
   const selectedLineIdx = meme.selectedLineIdx
 
   meme.lines.forEach((line, idx) => {
-    gCtx.font = `${line.size}px Arial`
-    gCtx.textAlign = 'center'
+    gCtx.font = `${line.size}px  ${line.fontFamily ||'Arial'}`
+    gCtx.textAlign =line.textAlign || 'center'
     gCtx.textBaseline = 'bottom'
 
     gCtx.strokeStyle = line.borderColor
@@ -89,49 +105,31 @@ function renderTxt() {
   })
 }
 
-function resizeCanvas() {
-  const elContainer = document.querySelector('.meme-editor-canvas')
-  const aspectRatio = gElCanvas.width / gElCanvas.height
-  const newWidth = elContainer.clientWidth - 10
-  const newHeight = newWidth / aspectRatio
+function onSelectTxtLine(ev) {
+  const {offsetX, offsetY} = ev
+  const selectedLineIdx = gMeme.lines.findIndex((line) => {
+    const textWidth = gCtx.measureText(line.txt).width
+    const textHeight = line.size
+    const textX = gElCanvas.width / 2 - textWidth / 2
+    const textY = 20 + line.size
 
-  // Save the current image data
-  const imageData = gCtx.getImageData(0, 0, gElCanvas.width, gElCanvas.height)
+    return offsetX >= textX && offsetX <= textX + textWidth && offsetY >= textY - textHeight && offsetY <= textY
+  })
 
-  // Resize the canvas
-  gElCanvas.width = newWidth
-  gElCanvas.height = newHeight
+  if (selectedLineIdx !== -1) {
+    gMeme.selectedLineIdx = selectedLineIdx
+    renderMeme()
+  }
+}
 
-  // Clear the canvas
-  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
-
-  // Create a new canvas to draw the scaled image data
-  const tempCanvas = document.createElement('canvas')
-  tempCanvas.width = imageData.width
-  tempCanvas.height = imageData.height
-  const tempCtx = tempCanvas.getContext('2d')
-  tempCtx.putImageData(imageData, 0, 0)
-
-  // Draw the scaled image data on the resized canvas
-  gCtx.drawImage(tempCanvas, 0, 0, tempCanvas.width, tempCanvas.height, 0, 0, gElCanvas.width, gElCanvas.height)
-
+function onChangeFontFamily(fontFamily) {
+  updateLineProperty('fontFamily', fontFamily)
   renderMeme()
 }
 
-function onChangeBorderColor(borderColor) {
-  updateLineProperty('borderColor', borderColor)
-  document.documentElement.style.setProperty('--border-icon-color', borderColor)
+function onChangeTxtAlign(alignment) {
+  updateLineProperty('textAlign', alignment);
   renderMeme()
-  console.log('borderColor', borderColor)
-}
-
-
-
-function onChangeFillColor(fillColor) {
-  updateLineProperty('color', fillColor)
-  document.documentElement.style.setProperty('--fill-icon-color', fillColor)
-  renderMeme()
-  // console.log('fillColor', fillColor)
 }
 
 function onUpdateLineSize(diff) {
@@ -143,6 +141,20 @@ function onUpdateLineSize(diff) {
   }
 }
 
+function onChangeBorderColor(borderColor) {
+  updateLineProperty('borderColor', borderColor)
+  document.documentElement.style.setProperty('--border-icon-color', borderColor)
+  renderMeme()
+  console.log('borderColor', borderColor)
+}
+
+function onChangeFillColor(fillColor) {
+  updateLineProperty('color', fillColor)
+  document.documentElement.style.setProperty('--fill-icon-color', fillColor)
+  renderMeme()
+  // console.log('fillColor', fillColor)
+}
+
 function drawFrame(line) {
   gCtx.strokeStyle = 'black'
   gCtx.lineWidth = 2
@@ -150,9 +162,34 @@ function drawFrame(line) {
   gCtx.strokeRect(line.x - textWidth / 2 - 5, line.y - line.size, textWidth + 10, line.size + 5)
 }
 
+function onDeleteLine() {
+  const selectedLineIdx = gMeme.selectedLineIdx
+  if (selectedLineIdx >= 0 && selectedLineIdx < gMeme.lines.length) {
+    gMeme.lines.splice(selectedLineIdx, 1)
+    gMeme.selectedLineIdx = Math.max(0, gMeme.selectedLineIdx - 1)
+    renderMeme()
+  }
+}
+
 function onSwitchLine() {
   gMeme.selectedLineIdx = (gMeme.selectedLineIdx + 1) % gMeme.lines.length
   renderMeme()
+}
+
+function onMoveLineUp() {
+  const selectedLine = getSelectedLine()
+  if (selectedLine) {
+    selectedLine.y -= 10
+    renderMeme()
+  }
+}
+
+function onMoveLineDown() {
+  const selectedLine = getSelectedLine()
+  if (selectedLine) {
+    selectedLine.y += 10 
+    renderMeme()
+  }
 }
 
 function onToggleMenu() {
@@ -168,16 +205,28 @@ function addListeners() {
   addMouseListeners()
   addTouchListeners()
   window.addEventListener('resize', resizeCanvas)
+  document.querySelectorAll('.color-input').forEach((input) => {
+    input.addEventListener('touchend', (event) => {
+      const color = event.target.value
+      if (input.id === 'border-color') {
+        onChangeBorderColor(color)
+      } else if (input.id === 'fill-color') {
+        onChangeFillColor(color)
+      }
+    })
+  })
 }
 
 function addMouseListeners() {
   gElCanvas.addEventListener('mousedown', onDown)
   gElCanvas.addEventListener('mousemove', onMove)
+  gElCanvas.addEventListener('click', onSelectTxtLine)
   document.addEventListener('mouseup', onUp)
 }
 
 function addTouchListeners() {
   gElCanvas.addEventListener('touchstart', onDown)
+  gElCanvas.addEventListener('touchend', onSelectTxtLine)
   gElCanvas.addEventListener('touchmove', onMove)
   document.addEventListener('touchend', onUp)
 }
@@ -234,15 +283,15 @@ function handleMouseUp() {
 function getEvPos(ev) {
   let pos = {
     x: ev.offsetX,
-    y: ev.offsetY 
+    y: ev.offsetY,
   }
 
   if (TOUCH_EVS.includes(ev.type)) {
     ev.preventDefault()
     ev = ev.changedTouches[0]
     pos = {
-      x: (ev.pageX - ev.target.offsetLeft - ev.target.clientLeft) ,
-      y: (ev.pageY - ev.target.offsetTop - ev.target.clientTop) ,
+      x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+      y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
     }
   }
   return pos

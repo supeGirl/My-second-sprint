@@ -25,7 +25,7 @@
   }
 
   .main-nav a {
-height: 100px;
+    height: 100px;
   }
 
   body.menu-open .nav-ber-container {
@@ -62,6 +62,10 @@ height: 100px;
   article {
     width: 80%;
   }
+
+  footer{
+    grid-row: 3;
+  }
 }
 
 /* MEDIUM */
@@ -77,7 +81,6 @@ height: 100px;
   footer {
     max-height: 80px;
   }
-
 
   .logo {
     font-size: 2em;
@@ -112,55 +115,63 @@ height: 100px;
     grid-row: 2;
   }
 
-/* GALLERY SECTION */
-.meme-gallery-page main {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  /* GALLERY SECTION */
+  .meme-gallery-page main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .meme-gallery-page img {
+    width: 300px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .meme-gallery-page img:hover {
+    transform: scale(1.1);
+  }
+
+  /* MEME_EDITOR SECTION */
+  .meme-editor-page main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .meme-editor-canvas {
+    flex: 4;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-inline-start: 3em;
+  }
+
+  .meme-editor-canvas img {
+    max-width: 100%;
+    min-height: 400px;
+  }
+  .editor-tools {
+    flex: 1;
+  }
+
+  .actions-container {
+    justify-content: space-between;
+  }
+
+  .btn-toggle-menu,
+  .close-menu-btn {
+    display: none;
+  }
 }
 
-.meme-gallery-page img {
-  width: 300px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
 
-.meme-gallery-page img:hover {
-  transform: scale(1.1);
-}
-
-
-/* MEME_EDITOR SECTION */
-.meme-editor-page main {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.meme-editor-canvas {
-  flex:4;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-inline-start: 3em;
-}
-
-.meme-editor-canvas img {
-  max-width: 100%; 
-  min-height: 400px;
-}
-.editor-tools {
-  flex: 1;
-}
-
-.actions-container {
-  justify-content: space-between;
-}
-
-.btn-toggle-menu,
-.close-menu-btn {
-  display: none;
-}
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('path/to/font.woff2') format('woff2'),
+       url('path/to/font.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }

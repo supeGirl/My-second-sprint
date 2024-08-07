@@ -56,7 +56,7 @@
     <section class="meme-editor-page">
       <main>
         <div class="meme-editor-canvas">
-          <canvas width="500px" height="600px" tabindex="0"></canvas>
+          <canvas width="500px" height="600px" tabindex="0" onclick="onSelectTxtLine(event)"></canvas>
         </div>
         <section class="editor-tools">
           <div class="actions-container">
@@ -65,12 +65,36 @@
               <input id="text-input" type="text" placeholder="Add Text Here" oninput="onAddTxt(this.value)"/>
               <button class="switch-line btn"onclick="onSwitchLine()"></button>
               <button class="add-line btn" onclick="onAddLine()"></button>
+              <button class="remove-line btn" onclick="onDeleteLine()"></button>
+
+            
             </div>
               <div class="action-style">
-                
-              <button class="font-button  btn bigger-size" onclick="onUpdateLineSize(1)"></button>
-              <button class="font-button btn smaller-size" onclick="onUpdateLineSize(-1)"></button>
-              
+
+                <select id="font-family-selector" onchange="onChangeFontFamily(this.value)">
+                 <option value="Arial">Arial</option>
+                 <option value="Verdana">Verdana</option>
+                 <option value="Georgia">Georgia</option>
+                 <option value="Times New Roman">Times New Roman</option>
+                  <option value="Courier New">Courier New</option>
+                  <option value="Comic Sans MS">Comic Sans MS</option>
+                  <option value="Trebuchet MS">Trebuchet MS</option>
+                  <option value="Impact">Impact</option>
+                  <option value="Lucida Console">Lucida Console</option>
+                  <option value="Tahoma">Tahoma</option>
+                  <option value="Palatino Linotype">Palatino Linotype</option>
+                  <option value="Garamond">Garamond</option>
+                  <option value="Segoe UI">Segoe UI</option>
+                </select>
+
+                <button class="font-button  btn bigger-size" onclick="onUpdateLineSize(1)"></button>
+                <button class="font-button btn smaller-size" onclick="onUpdateLineSize(-1)"></button>
+                <button class="font-button left" onclick="onChangeTxtAlign('left')"></button>
+                <button class="font-button center" onclick="onChangeTxtAlign('center')"></button>
+                <button class="font-button right" onclick="onChangeTxtAlign('right')"></button>
+              <button class="line-up btn" onclick="onMoveLineUp()"></button>
+              <button class="line-down btn" onclick="onMoveLineDown()"></button>              
+
               <button class="color-button btn border" onclick="document.getElementById('border-color').click()"></button>
               <input
                 onchange="onChangeBorderColor(this.value)"
@@ -94,6 +118,8 @@
                   class="color-input fill"
                   style="display: none;"
               />
+
+        
             </div>
             <a href="#" class="btn download-btn" onclick="onDownloadCanvas(this)" download="my-img.jpg">download</a>
           </div>
