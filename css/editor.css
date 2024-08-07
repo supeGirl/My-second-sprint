@@ -67,6 +67,12 @@ canvas {
   font-size: 16px;
   margin-bottom: 0;
 }
+.action-style  {
+  background-color: var(--secondary-color);
+  padding: 20px;
+  border-radius: 10px;
+  
+  }
 
 #font-family-selector{
   flex: 1;

@@ -25,7 +25,7 @@
   }
 
   .main-nav a {
-    height: 100px;
+height: 100px;
   }
 
   body.menu-open .nav-ber-container {
@@ -82,6 +82,7 @@
     max-height: 80px;
   }
 
+
   .logo {
     font-size: 2em;
   }
@@ -115,63 +116,29 @@
     grid-row: 2;
   }
 
-  /* GALLERY SECTION */
-  .meme-gallery-page main {
-    display: flex;
-    flex-wrap: wrap;
+  .meme-gallery-page {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+
+  .meme-editor-page {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    grid-template-columns: 1fr 2fr;
+    display: grid;
     gap: 10px;
   }
 
-  .meme-gallery-page img {
-    width: 300px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-
-  .meme-gallery-page img:hover {
-    transform: scale(1.1);
-  }
-
-  /* MEME_EDITOR SECTION */
-  .meme-editor-page main {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+  .editor-tools {
+    grid-column: 1;
   }
 
   .meme-editor-canvas {
-    flex: 4;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding-inline-start: 3em;
+    grid-column: 2;
   }
 
-  .meme-editor-canvas img {
-    max-width: 100%;
-    min-height: 400px;
-  }
-  .editor-tools {
-    flex: 1;
-  }
-
-  .actions-container {
-    justify-content: space-between;
-  }
-
-  .btn-toggle-menu,
-  .close-menu-btn {
-    display: none;
-  }
+.btn-toggle-menu,
+.close-menu-btn {
+  display: none;
 }
-
-
-@font-face {
-  font-family: 'MyCustomFont';
-  src: url('path/to/font.woff2') format('woff2'),
-       url('path/to/font.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
 }
