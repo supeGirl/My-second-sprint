@@ -21,6 +21,22 @@ function onSelectMeme(elMeme) {
   coverCanvasWithMeme(elMeme)
 }
 
+function onSelectRandomMeme() {
+  const randomImg = getRandomImage()
+  if (randomImg) {
+    gCurrentMeme = randomImg.url
+    const elMeme = new Image()
+    elMeme.src = randomImg.url
+    elMeme.onload = () => {
+      gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+      gElCanvas.height = (elMeme.naturalHeight / elMeme.naturalWidth) * gElCanvas.width
+      gCtx.drawImage(elMeme, 0, 0, gElCanvas.width, gElCanvas.height)
+      renderTxt()
+    }
+    gMeme.selectedImgId = randomImg.id
+  }
+}
+
 function coverCanvasWithMeme(elMeme) {
   gElCanvas.height = (elMeme.naturalHeight / elMeme.naturalWidth) * gElCanvas.width
   gCtx.drawImage(elMeme, 0, 0, gElCanvas.width, gElCanvas.height)

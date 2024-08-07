@@ -49,3 +49,8 @@ function updateLineProperty(property, value) {
 }
 
 
+function getRandomImage() {
+  const randomIndex = Math.floor(Math.random() * gImgs.length)
+  return gImgs[randomIndex]
+}
+

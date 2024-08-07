@@ -10,6 +10,8 @@
   color:var(--word-color);
 }
 
+
+
 .logo {
   /* later willbe logo */
   font-family: sans-serif;
@@ -27,6 +29,7 @@
   text-decoration: none;
   font-size: 1.2em;
   margin-inline-end: 0;
+  cursor: pointer;
 }
 
 .main-nav li:hover a {

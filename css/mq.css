@@ -59,6 +59,14 @@ height: 100px;
     color: #fff;
   }
 
+  .meme-editor-page{
+    margin-inline: 1em;
+  }
+  .action-container{
+    margin-inline-start: 2em;
+
+  }
+
   article {
     width: 80%;
   }
@@ -106,10 +114,6 @@ height: 100px;
     display: inline;
   }
 
-  .btn-toggle-menu,
-  .close-menu-btn {
-    display: none;
-  }
 
   .filter-search-container {
     grid-column: 2 / 3;
@@ -118,23 +122,27 @@ height: 100px;
 
   .meme-gallery-page {
     grid-column: 1 / -1;
-    grid-row: 3;
   }
 
-  .meme-editor-page {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    grid-template-columns: 1fr 2fr;
-    display: grid;
+  .meme-editor-page main{
+    display: flex;
+    flex-direction: row; 
+    justify-content: flex-start; 
     gap: 10px;
+    padding: 20px;
+    padding: 1vh;
   }
 
   .editor-tools {
-    grid-column: 1;
+    flex: 1;
   }
 
   .meme-editor-canvas {
-    grid-column: 2;
+    flex-grow: 2; /* Allow the canvas to take more space */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 20px;
   }
 
 .btn-toggle-menu,
