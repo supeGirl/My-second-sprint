@@ -20,7 +20,6 @@
 .main-header-container .main-nav a {
   display: flex;
   width: 130px;
-  height: 130px;
   align-items: center;
   justify-content: center;
   padding: 10px;

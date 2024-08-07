@@ -19,11 +19,11 @@
   align-items: start;
   justify-content: center;
   background-color: var(--primary-color);
+  padding-inline-start: 20px;
 }
 
 .meme-editor-canvas {
   width: 90%;
-  max-width: 100%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -45,7 +45,7 @@ canvas {
   align-items: center;
   border-radius: 1.875em;
   margin-inline-start: auto;
-  padding: 20px;
+  padding: 10px;
   gap: 10px;
   background-color: rgb(241, 238, 220);
   border: 1px solid var(--word-color);
@@ -67,6 +67,12 @@ canvas {
   font-size: 16px;
   margin-bottom: 0;
 }
+.action-style  {
+  background-color: var(--secondary-color);
+  padding: 20px;
+  border-radius: 10px;
+  
+  }
 
 .action-style .btn {
   flex: 0 0 auto;
