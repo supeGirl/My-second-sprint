@@ -24,13 +24,16 @@
     z-index: 100;
   }
 
+  .main-nav a {
+height: 100px;
+  }
+
   body.menu-open .nav-ber-container {
     display: flex;
     transform: translateX(0);
     box-shadow: -9px 0px 20px rgb(0 0 0 / 25%);
   }
 
-  
   body.menu-open {
     background-color: rgba(0, 0, 0, 0.5);
     pointer-events: auto;
@@ -63,10 +66,18 @@
 
 /* MEDIUM */
 @media (min-width: 661px) {
-  .main-layout {
-    grid-template-columns: minmax(400px, 1fr) minmax(auto, 740px) minmax(400px, 1fr);
-    grid-template-rows: auto auto 1fr;
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
   }
+
+  header,
+  footer {
+    max-height: 80px;
+  }
+
 
   .logo {
     font-size: 2em;
@@ -77,13 +88,13 @@
     position: static;
     height: auto;
     transform: none;
-    background-color: inherit;
     box-shadow: none;
     z-index: 0;
   }
 
   .main-nav {
     display: flex;
+    padding: 0;
     gap: 1em;
   }
 
@@ -101,29 +112,55 @@
     grid-row: 2;
   }
 
-  .meme-gallery-page {
-    grid-column: 1 / -1;
-    grid-row: 3;
-  }
+/* GALLERY SECTION */
+.meme-gallery-page main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 
-  .meme-editor-page {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    grid-template-columns: 1fr 2fr;
-    display: grid;
-    gap: 10px;
-  }
+.meme-gallery-page img {
+  width: 300px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
 
-  .editor-tools {
-    grid-column: 1;
-  }
+.meme-gallery-page img:hover {
+  transform: scale(1.1);
+}
 
-  .meme-editor-canvas {
-    grid-column: 2;
-  }
 
-  .btn-toggle-menu,
-  .close-menu-btn {
-    display: none;
-  }
+/* MEME_EDITOR SECTION */
+.meme-editor-page main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.meme-editor-canvas {
+  flex:4;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-inline-start: 3em;
+}
+
+.meme-editor-canvas img {
+  max-width: 100%; 
+  min-height: 400px;
+}
+.editor-tools {
+  flex: 1;
+}
+
+.actions-container {
+  justify-content: space-between;
+}
+
+.btn-toggle-menu,
+.close-menu-btn {
+  display: none;
+}
 }
