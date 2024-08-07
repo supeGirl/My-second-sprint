@@ -99,6 +99,8 @@ function renderMeme() {
   }
 }
 
+
+
 function renderTxt() {
   const meme = getMeme()
   const selectedLineIdx = meme.selectedLineIdx
@@ -303,7 +305,7 @@ function getEvPos(ev) {
   }
 
   if (TOUCH_EVS.includes(ev.type)) {
-    ev.preventDefault()
+    // ev.preventDefault()
     ev = ev.changedTouches[0]
     pos = {
       x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
@@ -312,3 +314,11 @@ function getEvPos(ev) {
   }
   return pos
 }
+
+function saveMemeToLocalStorage() {
+  const memes = loadFromStorage('savedMemes') || []
+  memes.push(gMeme)
+  saveToStorage('savedMemes', memes)
+  flashMsg('Meme saved successfully!')
+}
+

@@ -25,7 +25,7 @@
   }
 
   .main-nav a {
-height: 100px;
+    height: 100px;
   }
 
   body.menu-open .nav-ber-container {
@@ -59,19 +59,18 @@ height: 100px;
     color: #fff;
   }
 
-  .meme-editor-page{
+  .meme-editor-page {
     margin-inline: 1em;
   }
-  .action-container{
+  .action-container {
     margin-inline-start: 2em;
-
   }
 
   article {
     width: 80%;
   }
 
-  footer{
+  footer {
     grid-row: 3;
   }
 }
@@ -87,9 +86,8 @@ height: 100px;
 
   header,
   footer {
-    max-height: 80px;
+    max-height: 10vh;
   }
-
 
   .logo {
     font-size: 2em;
@@ -114,7 +112,6 @@ height: 100px;
     display: inline;
   }
 
-
   .filter-search-container {
     grid-column: 2 / 3;
     grid-row: 2;
@@ -124,11 +121,11 @@ height: 100px;
     grid-column: 1 / -1;
   }
 
-  .meme-editor-page main{
+  .meme-editor-page main {
     display: flex;
-    flex-direction: row; 
-    justify-content: flex-start; 
-    gap: 10px;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 5em;
     padding: 20px;
     padding: 1vh;
   }
@@ -145,8 +142,8 @@ height: 100px;
     margin: 20px;
   }
 
-.btn-toggle-menu,
-.close-menu-btn {
-  display: none;
-}
+  .btn-toggle-menu,
+  .close-menu-btn {
+    display: none;
+  }
 }
