@@ -278,14 +278,23 @@ canvas {
 }
 
 .download-btn,
-.save-btn {
+.save-btn ,.share-btn{
   color: white;
   text-decoration: none;
   border-radius: 1em;
   background-color: var(--secondary-color);
 }
 
-.save-bt::before {
+.share-btn::before {
+  content: '\f064'; /* Unicode for fa-fill */
+  font-family: 'FontAwesome';
+  position: relative;
+  left: -7px;
+  bottom: -5px;
+  transform: translateY(-50%);
+  color: #ffffff;
+}
+.save-btn::before {
   content: '\f02e'; /* Unicode for fa-fill */
   font-family: 'FontAwesome';
   position: relative;
