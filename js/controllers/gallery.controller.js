@@ -16,13 +16,30 @@ function renderGallery() {
 
 // Render saved memes
 function renderSavedMemes() {
-  const memes = loadFromStorage('savedMemes') || []
-  const elSavedMemesContainer = document.querySelector('.saved-memes-container')
-  elSavedMemesContainer.innerHTML = memes.map((meme, index) => `
-      <div class="saved-meme" onclick="onSelectSavedMeme(${index})">
-          <img src="${meme.imgUrl}" alt="Meme">
-      </div>
-  `).join('')
+  const savedMemes = loadFromStorage('savedMemes') || []
+  const elGallery = document.querySelector('.memes-gallery-container')
+
+  if (savedMemes.length === 0) {
+    galleryContainer.innerHTML = '<p>No saved memes yet!</p>'
+    return
+  }
+
+
+  savedMemes.forEach((meme, idx) => {
+    const img = new Image()
+    img.src = meme.selectedImgId // Assuming you store image URLs directly
+    img.dataset.index = idx
+    img.addEventListener('click', () => {
+      loadMemeForEditing(meme)
+    })
+
+    const memeContainer = document.createElement('div')
+    memeContainer.className = 'meme-thumbnail'
+    memeContainer.appendChild(img)
+
+    galleryContainer.appendChild(memeContainer)
+  });
+
 }
 
 function onImgSelect(id) {
@@ -54,22 +71,21 @@ function onOpenGallery(){
 
 
 function onOpenSavedMemes() {
-  const elGallery = document.querySelector('.meme-gallery-page');
-  const elEditor = document.querySelector('.meme-editor-page');
+  const elGallery = document.querySelector('.meme-gallery-page')
+  const elEditor = document.querySelector('.meme-editor-page')
   const elMeme= document.querySelector('.memes-gallery-container') 
-  elEditor.classList.add('hidden');
-  elGallery.classList.remove('hidden');
-  elMeme.classList.remove('hidden');
-  renderSavedMemes(); // Show saved memes
-  onToggleMenu();
+  const elGalleryCon = document.querySelector('.memes-gallery-container')
+
+  elGalleryCon.classList.remove('hidden')
+  elEditor.classList.add('hidden')
+  elGallery.classList.remove('hidden')
+  elMeme.classList.remove('hidden')
+  renderSavedMemes() // Show saved memes
+  onToggleMenu()
 }
 
 
-function onInfoCanvas() {
-  const elModal = document.querySelector('.info-modal')
 
-  elModal.showModal()
-}
 
 function onSelectSavedMeme(index) {
   const savedMemes = loadFromStorage('savedMemes') || []
@@ -78,9 +94,11 @@ function onSelectSavedMeme(index) {
   flashMsg('Meme loaded for editing!')
 }
 
+function onInfoCanvas() {
+  const elModal = document.querySelector('.info-modal')
 
-
-
+  elModal.showModal()
+}
 
 function flashMsg(msg) {
   const el = document.querySelector('.user-msg')

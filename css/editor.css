@@ -59,7 +59,7 @@ canvas {
   gap: 5px;
 }
 
-.line-actions input#text-input  {
+.line-actions input#text-input {
   flex: 1;
   padding: 15px;
   border: 1px solid var(--word-color);
@@ -67,17 +67,16 @@ canvas {
   font-size: 16px;
   margin-bottom: 0;
 }
-.action-style  {
+.action-style {
   background-color: var(--secondary-color);
   padding: 20px;
   border-radius: 10px;
-  
-  }
+}
 
-#font-family-selector{
+#font-family-selector {
   flex: 1;
   padding: 10px;
-  margin-inline:10px ;
+  margin-inline: 10px;
   border: 1px solid var(--word-color);
   border-radius: 10px;
   font-size: 16px;
@@ -246,19 +245,29 @@ canvas {
   top: 50%;
 }
 
-.action-user{
+.action-user {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10px 20px;
 }
 
-.download-btn , .save-btn{
-  color: white ;
+.download-btn,
+.save-btn {
+  color: white;
   text-decoration: none;
-  border-radius: 4px;
-  margin-top: 10px;
+  border-radius: 1em;
   background-color: var(--secondary-color);
+}
+
+.save-bt::before {
+  content: '\f02e'; /* Unicode for fa-fill */
+  font-family: 'FontAwesome';
+  position: relative;
+  left: -7px;
+  bottom: -5px;
+  transform: translateY(-50%);
+  color: #ffffff;
 }
 
 .download-btn::before {
@@ -271,6 +280,7 @@ canvas {
   color: #ffffff;
 }
 
-.download-btn:hover {
+.download-btn:hover,
+.save-btn:hover {
   background-color: var(--event-color);
 }
