@@ -14,34 +14,6 @@ function renderGallery() {
   elGallery.innerHTML = imgsStr
 }
 
-// Render saved memes
-function renderSavedMemes() {
-  const savedMemes = loadFromStorage('savedMemes') || []
-  const elGallery = document.querySelector('.memes-gallery-container')
-
-  if (savedMemes.length === 0) {
-    galleryContainer.innerHTML = '<p>No saved memes yet!</p>'
-    return
-  }
-
-
-  savedMemes.forEach((meme, idx) => {
-    const img = new Image()
-    img.src = meme.selectedImgId // Assuming you store image URLs directly
-    img.dataset.index = idx
-    img.addEventListener('click', () => {
-      loadMemeForEditing(meme)
-    })
-
-    const memeContainer = document.createElement('div')
-    memeContainer.className = 'meme-thumbnail'
-    memeContainer.appendChild(img)
-
-    galleryContainer.appendChild(memeContainer)
-  });
-
-}
-
 function onImgSelect(id) {
   const elGallery = document.querySelector('.meme-gallery-page')
   const elEditor = document.querySelector('.meme-editor-page')
@@ -56,44 +28,68 @@ function onSearchMeme(search) {
   console.log('your search', search)
 }
 
-
 function onOpenGallery(){
   const elGallery = document.querySelector('.meme-gallery-page')
-  const elGalleryCon = document.querySelector('.memes-gallery-container')
   const elEditor = document.querySelector('.meme-editor-page')
   elEditor.classList.add('hidden')
-  elGalleryCon.classList.remove('hidden')
   elGallery.classList.remove('hidden')
   renderMeme()
   renderGallery()
   onToggleMenu()
 }
 
-
-function onOpenSavedMemes() {
+function onOpenSavedMemes(){
   const elGallery = document.querySelector('.meme-gallery-page')
+  const elSavedGallery = document.querySelector('.saved-meme-gallery-page')
   const elEditor = document.querySelector('.meme-editor-page')
-  const elMeme= document.querySelector('.memes-gallery-container') 
-  const elGalleryCon = document.querySelector('.memes-gallery-container')
-
-  elGalleryCon.classList.remove('hidden')
+  elSavedGallery.classList.remove('hidden')
   elEditor.classList.add('hidden')
-  elGallery.classList.remove('hidden')
-  elMeme.classList.remove('hidden')
-  renderSavedMemes() // Show saved memes
+  elGallery.classList.add('hidden')
+  console.log('elSavedGallery',elSavedGallery )
+  
+  
+  renderSaved()
   onToggleMenu()
 }
 
 
+function renderSaved() {
+  const savedMemes = getLoadedMemes()
+  
+  if (savedMemes.length === 0) {
+    console.log('No saved memes available')
+    const savedMemesContainer = document.querySelector('.saved-memes-gallery-container')
+    savedMemesContainer.innerHTML = '<p>No saved memes available.</p>'
+    return;
+  }
 
+  const savedItemsHTML = savedMemes
+    .map((meme, index) => `
+      <article class="meme-list-image">
+        <img class="saved-image" src="${meme.selectedImgId}" alt="meme" 
+          data-index="${index}" onclick="onLoadFromSaved(this)"/>
+        <button data-index="${index}" class="btn delete-saved-button" onclick="onDeleteSaved(this)">Delete</button>
+      </article>`)
+    .join('')
 
-function onSelectSavedMeme(index) {
-  const savedMemes = loadFromStorage('savedMemes') || []
-  gMeme = savedMemes[index]
-  renderMeme()
-  flashMsg('Meme loaded for editing!')
+  const savedMemesContainer = document.querySelector('.saved-memes-gallery-container')
+  if (savedMemesContainer) {
+    savedMemesContainer.innerHTML = savedItemsHTML
+  } else {
+    console.error('The container for saved memes is missing from the DOM.')
+  }
+
 }
 
+function onLoadFromSaved(elImg) {
+  const loadedMemes = getLoadedMemes()
+  const selectedMeme = loadedMemes[elImg.dataset.index]
+  loadMeme(selectedMeme)
+  openEditor()
+}
+
+
+// USER_HELPER
 function onInfoCanvas() {
   const elModal = document.querySelector('.info-modal')
 

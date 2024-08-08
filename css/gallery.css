@@ -7,12 +7,14 @@
   padding: 10px;
 }
 
-.meme-gallery-page {
+.meme-gallery-page,
+.saved-meme-gallery-page {
   grid-column: 1/-1;
   grid-row: 3;
 }
 
-.memes-gallery-container {
+.memes-gallery-container,
+.saved-meme-gallery-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

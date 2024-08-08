@@ -50,13 +50,36 @@
           </datalist>
         </section>
 
-        <section class="memes-gallery-container hidden">
+        <section class="memes-gallery-container">
          
         </section>
 
-        <section class="memes-gallery-container hidden">
+      </main>
+    </section>
+
+
+    <section class="saved-meme-gallery-page hidden">
+      <main>
+        <section class="filter-search-container">
+          <input
+            list="memes-types"
+            type="text"
+            class="search-input"
+            placeholder="search"
+            oninput="onSearchMeme(this.value)"
+          />
+          <datalist id="memes-types">
+            <option value="sad">Sad</option>
+            <option value="happy">Happy</option>
+            <option value="angry">Angry</option>
+            <option value="funny">funny</option>
+          </datalist>
+        </section>
+
+        <section class="saved-memes-gallery-container ">
          
         </section>
+
       </main>
     </section>
 
@@ -125,13 +148,43 @@
                   class="color-input fill"
                   style="display: none;"
               />
-
-        
+            </div>
+            <div class="emoji-list">
+              <button onclick="addEmoji('😀')">😀</button>
+              <button onclick="addEmoji('😁')">😁</button>
+              <button onclick="addEmoji('😂')">😂</button>
+              <button onclick="addEmoji('🤣')">🤣</button>
+              <button onclick="addEmoji('😃')">😃</button>
+              <button onclick="addEmoji('😄')">😄</button>
+              <button onclick="addEmoji('😅')">😅</button>
+              <button onclick="addEmoji('😆')">😆</button>
+              <button onclick="addEmoji('😉')">😉</button>
+              <button onclick="addEmoji('😊')">😊</button>
+              <button onclick="addEmoji('😋')">😋</button>
+              <button onclick="addEmoji('😎')">😎</button>
+              <button onclick="addEmoji('😍')">😍</button>
+              <button onclick="addEmoji('😘')">😘</button>
+              <button onclick="addEmoji('🥰')">🥰</button>
+              <button onclick="addEmoji('😗')">😗</button>
+              <button onclick="addEmoji('😙')">😙</button>
+              <button onclick="addEmoji('😚')">😚</button>
+              <button onclick="addEmoji('🙂')">🙂</button>
+              <button onclick="addEmoji('🤗')">🤗</button>
+              <button onclick="addEmoji('🤩')">🤩</button>
+              <button onclick="addEmoji('🤔')">🤔</button>
+              <button onclick="addEmoji('🤨')">🤨</button>
+              <button onclick="addEmoji('😐')">😐</button>
+              <button onclick="addEmoji('😑')">😑</button>
+              <button onclick="addEmoji('😶')">😶</button>
+              <button onclick="addEmoji('🙄')">🙄</button>
+              <button onclick="addEmoji('😏')">😏</button>
+              <button onclick="addEmoji('😣')">😣</button>
+              <button onclick="addEmoji('😥')">😥</button>
             </div>
             <div class="action-user">
 
               <a href="#" class="btn download-btn" onclick="onDownloadCanvas(this)" download="my-img.jpg">download</a>
-              <a href="#" class="btn save-btn" onclick="saveMemeToLocalStorage()">Save</a>
+              <a href="#" class="btn save-btn" onclick="handleSave()">Save</a>
             </div>
           </div>
         </section>

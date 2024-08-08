@@ -108,6 +108,31 @@ canvas {
   flex-wrap: wrap;
 }
 
+.emoji-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  padding: 1vh;
+  border: 0.1vh solid #ccc;
+  border-radius: 1vh;
+  background-color: var(--secondary-color);
+  overflow-x: auto;
+  width: calc(100% - 1vh);
+  max-height: 10vh;
+
+}
+
+.emoji-list button {
+  font-size: 2.4vh;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.emoji-list button:hover {
+  transform: scale(1.2);
+}
+
 .color-button,
 .font-button,
 .btn {
@@ -284,3 +309,5 @@ canvas {
 .save-btn:hover {
   background-color: var(--event-color);
 }
+
+

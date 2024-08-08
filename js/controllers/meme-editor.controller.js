@@ -67,9 +67,11 @@ function onAddLine() {
   renderMeme()
 }
 
+
+
 function resizeCanvas() {
   const elContainer = document.querySelector('.meme-editor-canvas')
-  const newWidth = elContainer.clientWidth - 10
+  const newWidth = elContainer.clientWidth
   const newHeight = (gElCanvas.height / gElCanvas.width) * newWidth
 
   const imageData = gCtx.getImageData(0, 0, gElCanvas.width, gElCanvas.height)
@@ -98,8 +100,6 @@ function renderMeme() {
     }
   }
 }
-
-
 
 function renderTxt() {
   const meme = getMeme()
@@ -173,12 +173,6 @@ function onChangeFillColor(fillColor) {
   // console.log('fillColor', fillColor)
 }
 
-function drawFrame(line) {
-  gCtx.strokeStyle = 'black'
-  gCtx.lineWidth = 2
-  const textWidth = gCtx.measureText(line.txt).width
-  gCtx.strokeRect(line.x - textWidth / 2 - 5, line.y - line.size, textWidth + 10, line.size + 5)
-}
 
 function onDeleteLine() {
   const selectedLineIdx = gMeme.selectedLineIdx
@@ -315,10 +309,17 @@ function getEvPos(ev) {
   return pos
 }
 
-function saveMemeToLocalStorage() {
-  const memes = loadFromStorage('savedMemes') || []
-  memes.push(gMeme)
-  saveToStorage('savedMemes', memes)
-  flashMsg('Meme saved successfully!')
+
+function handleSave(){
+  const meme = getMeme()
+  const editedImg = getEditedImage()
+  
+  if (!meme || !editedImg) {
+    console.error('Meme or edited image data is missing')
+    return
+  }
+
+  saveMeme(meme, editedImg)
 }
+
 
