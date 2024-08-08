@@ -151,40 +151,60 @@
             </div>
             <div class="emoji-list">
               <button onclick="addEmoji('😀')">😀</button>
-              <button onclick="addEmoji('😁')">😁</button>
-              <button onclick="addEmoji('😂')">😂</button>
-              <button onclick="addEmoji('🤣')">🤣</button>
-              <button onclick="addEmoji('😃')">😃</button>
-              <button onclick="addEmoji('😄')">😄</button>
-              <button onclick="addEmoji('😅')">😅</button>
-              <button onclick="addEmoji('😆')">😆</button>
-              <button onclick="addEmoji('😉')">😉</button>
-              <button onclick="addEmoji('😊')">😊</button>
-              <button onclick="addEmoji('😋')">😋</button>
-              <button onclick="addEmoji('😎')">😎</button>
-              <button onclick="addEmoji('😍')">😍</button>
-              <button onclick="addEmoji('😘')">😘</button>
-              <button onclick="addEmoji('🥰')">🥰</button>
-              <button onclick="addEmoji('😗')">😗</button>
-              <button onclick="addEmoji('😙')">😙</button>
-              <button onclick="addEmoji('😚')">😚</button>
-              <button onclick="addEmoji('🙂')">🙂</button>
-              <button onclick="addEmoji('🤗')">🤗</button>
-              <button onclick="addEmoji('🤩')">🤩</button>
-              <button onclick="addEmoji('🤔')">🤔</button>
-              <button onclick="addEmoji('🤨')">🤨</button>
-              <button onclick="addEmoji('😐')">😐</button>
-              <button onclick="addEmoji('😑')">😑</button>
-              <button onclick="addEmoji('😶')">😶</button>
-              <button onclick="addEmoji('🙄')">🙄</button>
-              <button onclick="addEmoji('😏')">😏</button>
-              <button onclick="addEmoji('😣')">😣</button>
-              <button onclick="addEmoji('😥')">😥</button>
+  <button onclick="addEmoji('😁')">😁</button>
+  <button onclick="addEmoji('😂')">😂</button>
+  <button onclick="addEmoji('🤣')">🤣</button>
+  <button onclick="addEmoji('😃')">😃</button>
+  <button onclick="addEmoji('😄')">😄</button>
+  <button onclick="addEmoji('😅')">😅</button>
+  <button onclick="addEmoji('😆')">😆</button>
+  <button onclick="addEmoji('😉')">😉</button>
+  <button onclick="addEmoji('😊')">😊</button>
+  <button onclick="addEmoji('😋')">😋</button>
+  <button onclick="addEmoji('😎')">😎</button>
+  <button onclick="addEmoji('😍')">😍</button>
+  <button onclick="addEmoji('😘')">😘</button>
+  <button onclick="addEmoji('🥰')">🥰</button>
+  <button onclick="addEmoji('😗')">😗</button>
+  <button onclick="addEmoji('😙')">😙</button>
+  <button onclick="addEmoji('😚')">😚</button>
+  <button onclick="addEmoji('🙂')">🙂</button>
+  <button onclick="addEmoji('🤗')">🤗</button>
+  <button onclick="addEmoji('🤩')">🤩</button>
+  <button onclick="addEmoji('🤔')">🤔</button>
+  <button onclick="addEmoji('🤨')">🤨</button>
+  <button onclick="addEmoji('😐')">😐</button>
+  <button onclick="addEmoji('😑')">😑</button>
+  <button onclick="addEmoji('😶')">😶</button>
+  <button onclick="addEmoji('🙄')">🙄</button>
+  <button onclick="addEmoji('😏')">😏</button>
+  <button onclick="addEmoji('😣')">😣</button>
+  <button onclick="addEmoji('😥')">😥</button>
+  <button onclick="addEmoji('😮')">😮</button>
+  <button onclick="addEmoji('😱')">😱</button>
+  <button onclick="addEmoji('😨')">😨</button>
+  <button onclick="addEmoji('😰')">😰</button>
+  <button onclick="addEmoji('😯')">😯</button>
+  <button onclick="addEmoji('😲')">😲</button>
+  <button onclick="addEmoji('😵')">😵</button>
+  <button onclick="addEmoji('🤯')">🤯</button>
+  <button onclick="addEmoji('😳')">😳</button>
+  <button onclick="addEmoji('🥺')">🥺</button>
+  <button onclick="addEmoji('🥳')">🥳</button>
+  <button onclick="addEmoji('😈')">😈</button>
+  <button onclick="addEmoji('👿')">👿</button>
+  <button onclick="addEmoji('💀')">💀</button>
+  <button onclick="addEmoji('☠️')">☠️</button>
+  <button onclick="addEmoji('💩')">💩</button>
+  <button onclick="addEmoji('🤡')">🤡</button>
+  <button onclick="addEmoji('👹')">👹</button>
+
             </div>
             <div class="action-user">
 
-              <a href="#" class="btn download-btn" onclick="onDownloadCanvas(this)" download="my-img.jpg">download</a>
               <a href="#" class="btn save-btn" onclick="handleSave()">Save</a>
+              <a href="#" class="btn download-btn" onclick="onDownloadCanvas(this)" download="my-img.jpg">download</a>
+              <a href="#" class="btn share-btn" onclick="onUploadImg()">Share</a>
             </div>
           </div>
         </section>
@@ -212,7 +232,10 @@
     <footer>
       <small>&copy;Keren Vasserman, 2024 All rights reserved.</small>
     </footer>
+
+
     <script src="./js/sevices/storage.service.js"></script>
+    <script src="./js/sevices/sharing-on-facebook.service.js"></script>
     <script src="./js/sevices/meme-editor.service.js"></script>
     <script src="./js/sevices/gallery.service.js"></script>
     <script src="./js/controllers/gallery.controller.js"></script>
