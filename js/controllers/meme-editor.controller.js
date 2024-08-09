@@ -299,7 +299,7 @@ function getEvPos(ev) {
   }
 
   if (TOUCH_EVS.includes(ev.type)) {
-    // ev.preventDefault()
+    ev.preventDefault()
     ev = ev.changedTouches[0]
     pos = {
       x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
