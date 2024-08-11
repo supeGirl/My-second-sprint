@@ -22,6 +22,7 @@ function onSelectMeme(elMeme) {
 }
 
 function onSelectRandomMeme() {
+  const elNav = document.querySelector('.nav-ber-container')
   const randomImg = getRandomImage()
   if (randomImg) {
     gCurrentMeme = randomImg.url
@@ -35,12 +36,7 @@ function onSelectRandomMeme() {
     }
     gMeme.selectedImgId = randomImg.id
   }
-}
-
-function coverCanvasWithMeme(elMeme) {
-  gElCanvas.height = (elMeme.naturalHeight / elMeme.naturalWidth) * gElCanvas.width
-  gCtx.drawImage(elMeme, 0, 0, gElCanvas.width, gElCanvas.height)
-  renderTxt()
+  onToggleMenu()
 }
 
 function onAddTxt(elTxt) {
@@ -67,21 +63,66 @@ function onAddLine() {
   renderMeme()
 }
 
+function coverCanvasWithMeme(elMeme) {
+  // Get the screen dimensions
+  const screenWidth = window.innerWidth
+  const screenHeight = window.innerHeight
 
+  // Get the image dimensions
+  const imgWidth = elMeme.naturalWidth
+  const imgHeight = elMeme.naturalHeight
+
+  // Calculate the image's aspect ratio
+  const imageRatio = imgWidth / imgHeight
+
+  // Determine the maximum canvas dimensions
+  const maxCanvasWidth = screenWidth
+  const maxCanvasHeight = screenHeight
+
+  let newWidth, newHeight
+
+  // Scale the canvas based on the image's dimensions
+  if (imgWidth > imgHeight) {
+    newWidth = Math.min(maxCanvasWidth, imgWidth)
+    newHeight = newWidth / imageRatio
+  } else {
+    newHeight = Math.min(maxCanvasHeight, imgHeight)
+    newWidth = newHeight * imageRatio
+  }
+
+  // Apply constraints to make sure the canvas fits within the screen
+  if (newWidth > maxCanvasWidth) {
+    newWidth = maxCanvasWidth
+    newHeight = newWidth / imageRatio
+  }
+  if (newHeight > maxCanvasHeight) {
+    newHeight = maxCanvasHeight
+    newWidth = newHeight * imageRatio
+  }
+
+  // Update the canvas dimensions
+  gElCanvas.width = newWidth
+  gElCanvas.height = newHeight
+
+  // Draw the image onto the canvas
+  gCtx.clearRect(0, 0, newWidth, newHeight)
+  gCtx.drawImage(elMeme, 0, 0, newWidth, newHeight)
+
+  // Render the text on the canvas
+  renderTxt()
+}
 
 function resizeCanvas() {
   const elContainer = document.querySelector('.meme-editor-canvas')
   const newWidth = elContainer.clientWidth
-  const newHeight = (gElCanvas.height / gElCanvas.width) * newWidth
 
-  const imageData = gCtx.getImageData(0, 0, gElCanvas.width, gElCanvas.height)
+  // Calculate the new height based on the current aspect ratio of the canvas
+  const aspectRatio = gElCanvas.width / gElCanvas.height
+  const newHeight = newWidth / aspectRatio
 
+  // Update the canvas dimensions
   gElCanvas.width = newWidth
   gElCanvas.height = newHeight
-
-  gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
-
-  gCtx.putImageData(imageData, 0, 0, 0, 0, newWidth, newHeight)
 
   renderMeme()
 }
@@ -93,6 +134,7 @@ function renderMeme() {
   if (img) {
     const elMeme = new Image()
     elMeme.src = img.url
+
     elMeme.onload = () => {
       gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
       coverCanvasWithMeme(elMeme)
@@ -106,8 +148,8 @@ function renderTxt() {
   const selectedLineIdx = meme.selectedLineIdx
 
   meme.lines.forEach((line, idx) => {
-    gCtx.font = `${line.size}px  ${line.fontFamily ||'Arial'}`
-    gCtx.textAlign =line.textAlign || 'center'
+    gCtx.font = `${line.size}px  ${line.fontFamily || 'Arial'}`
+    gCtx.textAlign = line.textAlign || 'center'
     gCtx.textBaseline = 'bottom'
 
     gCtx.strokeStyle = line.borderColor
@@ -146,7 +188,7 @@ function onChangeFontFamily(fontFamily) {
 }
 
 function onChangeTxtAlign(alignment) {
-  updateLineProperty('textAlign', alignment);
+  updateLineProperty('textAlign', alignment)
   renderMeme()
 }
 
@@ -170,9 +212,7 @@ function onChangeFillColor(fillColor) {
   updateLineProperty('color', fillColor)
   document.documentElement.style.setProperty('--fill-icon-color', fillColor)
   renderMeme()
-  // console.log('fillColor', fillColor)
 }
-
 
 function onDeleteLine() {
   const selectedLineIdx = gMeme.selectedLineIdx
@@ -199,7 +239,7 @@ function onMoveLineUp() {
 function onMoveLineDown() {
   const selectedLine = getSelectedLine()
   if (selectedLine) {
-    selectedLine.y += 10 
+    selectedLine.y += 10
     renderMeme()
   }
 }
@@ -309,11 +349,10 @@ function getEvPos(ev) {
   return pos
 }
 
-
-function handleSave(){
+function handleSave() {
   const meme = getMeme()
   const editedImg = getEditedImage()
-  
+
   if (!meme || !editedImg) {
     console.error('Meme or edited image data is missing')
     return
@@ -321,5 +360,3 @@ function handleSave(){
 
   saveMeme(meme, editedImg)
 }
-
-

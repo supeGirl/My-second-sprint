@@ -18,8 +18,8 @@ body {
 
 .main-layout {
   display: grid;
-  grid-template-columns: 0 1fr 0;
-  gap: 10px;
+  grid-template-columns: 30px 1fr 30px;
+  gap: 0.63;
 }
 
 img{
@@ -90,7 +90,7 @@ footer {
   text-align: center;
   padding-block: 10px;
   background-color:var(--secondary-color);
-  color: white;
+  color: var(--primary-color);
   font-size: 1.5em;
   align-self: flex-end;
 

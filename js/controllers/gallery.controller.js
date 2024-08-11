@@ -31,6 +31,9 @@ function onSearchMeme(search) {
 function onOpenGallery(){
   const elGallery = document.querySelector('.meme-gallery-page')
   const elEditor = document.querySelector('.meme-editor-page')
+  const elSavedGallery = document.querySelector('.saved-meme-gallery-page')
+
+  elSavedGallery.classList.add('hidden')
   elEditor.classList.add('hidden')
   elGallery.classList.remove('hidden')
   renderMeme()

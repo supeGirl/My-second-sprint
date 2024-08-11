@@ -23,7 +23,7 @@
 }
 
 .meme-editor-canvas {
-  width: 90%;
+  min-width: 350px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -35,7 +35,6 @@ canvas {
   background-color: #fff;
   border: 1px solid black;
   width: 100%;
-  height: auto;
 }
 
 .actions-container {
@@ -112,14 +111,14 @@ canvas {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
-  padding: 1vh;
+  padding: 5px;
+  margin-block: 0.5em;
   border: 0.1vh solid #ccc;
   border-radius: 1vh;
   background-color: var(--secondary-color);
   overflow-x: auto;
-  width: calc(100% - 1vh);
+  width: calc(100% - 1em);
   max-height: 10vh;
-
 }
 
 .emoji-list button {
@@ -275,10 +274,12 @@ canvas {
   align-items: center;
   justify-content: center;
   padding: 10px 20px;
+  gap: 0.5em;
 }
 
 .download-btn,
-.save-btn ,.share-btn{
+.save-btn,
+.share-btn {
   color: white;
   text-decoration: none;
   border-radius: 1em;
@@ -315,8 +316,7 @@ canvas {
 }
 
 .download-btn:hover,
-.save-btn:hover {
+.save-btn:hover,
+.share-btn:hover {
   background-color: var(--event-color);
 }
-
-
