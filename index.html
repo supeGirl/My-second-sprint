@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
     <script src="https://kit.fontawesome.com/cea3baaf08.js" crossorigin="anonymous"></script>
 
@@ -50,13 +50,9 @@
           </datalist>
         </section>
 
-        <section class="memes-gallery-container">
-         
-        </section>
-
+        <section class="memes-gallery-container"></section>
       </main>
     </section>
-
 
     <section class="saved-meme-gallery-page hidden">
       <main>
@@ -76,10 +72,7 @@
           </datalist>
         </section>
 
-        <section class="saved-memes-gallery-container ">
-         
-        </section>
-
+        <section class="saved-memes-gallery-container"></section>
       </main>
     </section>
 
@@ -91,41 +84,39 @@
         <section class="editor-tools">
           <div class="actions-container">
             <div class="line-actions">
-
-              <input id="text-input" type="text" placeholder="Add Text Here" oninput="onAddTxt(this.value)"/>
-              <button class="switch-line btn"onclick="onSwitchLine()"></button>
+              <input id="text-input" type="text" placeholder="Add Text Here" oninput="onAddTxt(this.value)" />
+              <button class="switch-line btn" onclick="onSwitchLine()"></button>
               <button class="add-line btn" onclick="onAddLine()"></button>
               <button class="remove-line btn" onclick="onDeleteLine()"></button>
-
-            
             </div>
-              <div class="action-style">
+            <div class="action-style">
+              <select id="font-family-selector" onchange="onChangeFontFamily(this.value)">
+                <option value="Arial">Arial</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Comic Sans MS">Comic Sans MS</option>
+                <option value="Trebuchet MS">Trebuchet MS</option>
+                <option value="Impact">Impact</option>
+                <option value="Lucida Console">Lucida Console</option>
+                <option value="Tahoma">Tahoma</option>
+                <option value="Palatino Linotype">Palatino Linotype</option>
+                <option value="Garamond">Garamond</option>
+                <option value="Segoe UI">Segoe UI</option>
+              </select>
 
-                <select id="font-family-selector" onchange="onChangeFontFamily(this.value)">
-                 <option value="Arial">Arial</option>
-                 <option value="Verdana">Verdana</option>
-                 <option value="Georgia">Georgia</option>
-                 <option value="Times New Roman">Times New Roman</option>
-                  <option value="Courier New">Courier New</option>
-                  <option value="Comic Sans MS">Comic Sans MS</option>
-                  <option value="Trebuchet MS">Trebuchet MS</option>
-                  <option value="Impact">Impact</option>
-                  <option value="Lucida Console">Lucida Console</option>
-                  <option value="Tahoma">Tahoma</option>
-                  <option value="Palatino Linotype">Palatino Linotype</option>
-                  <option value="Garamond">Garamond</option>
-                  <option value="Segoe UI">Segoe UI</option>
-                </select>
-
-                <button class="font-button  btn bigger-size" onclick="onUpdateLineSize(1)"></button>
-                <button class="font-button btn smaller-size" onclick="onUpdateLineSize(-1)"></button>
-                <button class="font-button left" onclick="onChangeTxtAlign('left')"></button>
-                <button class="font-button center" onclick="onChangeTxtAlign('center')"></button>
-                <button class="font-button right" onclick="onChangeTxtAlign('right')"></button>
+              <button class="font-button btn bigger-size" onclick="onUpdateLineSize(1)"></button>
+              <button class="font-button btn smaller-size" onclick="onUpdateLineSize(-1)"></button>
+              <button class="font-button left" onclick="onChangeTxtAlign('left')"></button>
+              <button class="font-button center" onclick="onChangeTxtAlign('center')"></button>
+              <button class="font-button right" onclick="onChangeTxtAlign('right')"></button>
               <button class="line-up btn" onclick="onMoveLineUp()"></button>
-              <button class="line-down btn" onclick="onMoveLineDown()"></button>              
+              <button class="line-down btn" onclick="onMoveLineDown()"></button>
 
-              <button class="color-button btn border" onclick="document.getElementById('border-color').click()"></button>
+              <button
+                class="color-button btn border"
+                onclick="document.getElementById('border-color').click()"></button>
               <input
                 onchange="onChangeBorderColor(this.value)"
                 type="color"
@@ -134,19 +125,19 @@
                 title="border-color"
                 value="#15C1B5"
                 class="color-input border"
-                style="display: none;"
-                />
+                style="display: none"
+              />
 
-                <button class="color-button btn fill" onclick="document.getElementById('fill-color').click()">
-                  <input
-                  onchange="onChangeFillColor(this.value)"
-                  type="color"
-                  id="fill-color"
-                  name="fill-color"
-                  title="background-color"
-                  value="#ffffff"
-                  class="color-input fill"
-                  style="display: none;"
+              <button class="color-button btn fill" onclick="document.getElementById('fill-color').click()"></button>
+              <input
+                onchange="onChangeFillColor(this.value)"
+                type="color"
+                id="fill-color"
+                name="fill-color"
+                title="background-color"
+                value="#ffffff"
+                class="color-input fill"
+                style="display: none"
               />
             </div>
             <div class="emoji-list">
@@ -198,10 +189,8 @@
               <button onclick="addEmoji('💩')">💩</button>
               <button onclick="addEmoji('🤡')">🤡</button>
               <button onclick="addEmoji('👹')">👹</button>
-
             </div>
             <div class="action-user">
-
               <a href="#" class="btn save-btn" onclick="handleSave()">Save</a>
               <a href="#" class="btn download-btn" onclick="onDownloadCanvas(this)" download="my-img.jpg">Download</a>
               <a href="#" class="btn share-btn" onclick="onUploadImg()">Share</a>
@@ -217,8 +206,10 @@
 
         <div class="web-info">
           <ol type="i">
-            <li>Select or Upload a meme image</li><br>
-            <li>Add top and bottom text as needed</li><br>
+            <li>Select or Upload a meme image</li>
+            <br />
+            <li>Add top and bottom text as needed</li>
+            <br />
             <li>Create the meme by clicking on the "Download" button</li>
           </ol>
         </div>
@@ -232,7 +223,6 @@
     <footer>
       <small>&copy;Keren Vasserman, 2024 All rights reserved.</small>
     </footer>
-
 
     <script src="./js/sevices/storage.service.js"></script>
     <script src="./js/sevices/sharing-on-facebook.service.js"></script>

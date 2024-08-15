@@ -2,8 +2,6 @@
 
 @media (max-width: 660px) {
   .main-header-container {
-    display: flex;
-    align-items: center;
     width: 100%;
   }
 
@@ -25,7 +23,7 @@
   }
 
   .main-nav a {
-    height: 100px;
+    height: clamp(60px, 10vw, 100px);
   }
 
   body.menu-open .nav-ber-container {
@@ -40,8 +38,8 @@
   }
 
   .btn-toggle-menu {
-    font-size: 2rem;
-    padding: 10px;
+    font-size: clamp(1.5rem, 2vw, 2rem);
+    padding: clamp(8px, 1.5vw, 10px);
     border: none;
     background-color: inherit;
     color: var(--primary-color);
@@ -49,21 +47,21 @@
 
   .close-menu-btn {
     position: absolute;
-    top: 5px;
-    right: 15px;
-
-    font-size: 1.2rem;
-    padding: 10px;
+    top: clamp(5px, 1vw, 10px);
+    right: clamp(15px, 2vw, 20px);
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    padding: clamp(8px, 1.5vw, 10px);
     border: none;
     background-color: inherit;
-    color: #fff;
+    color: #d4d3d3;
   }
 
   .meme-editor-page {
-    margin-inline: 1em;
+    margin-inline: clamp(1em, 2vw, 2em);
   }
+  
   .action-container {
-    margin-inline-start: 2em;
+    margin-inline-start: clamp(1em, 2vw, 2em);
   }
 
   article {
@@ -80,10 +78,7 @@
   header,
   footer {
     max-height: 10vh;
-  }
-
-  .logo {
-    font-size: 2em;
+    max-height: 10dvh;
   }
 
   .nav-ber-container {
@@ -97,8 +92,6 @@
 
   .main-nav {
     display: flex;
-    padding: 0;
-    gap: 1em;
   }
 
   .main-nav li {
@@ -122,7 +115,7 @@
     justify-content: center;
     align-items: center;
     gap: 1em;
-    padding: 1.25em;
+    padding: clamp(1em, 2vw, 1.5em);
   }
 
   .editor-tools {
@@ -134,8 +127,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    margin: 20px;
-    padding-inline-start: 1em;
+    margin: (15px, 2vw, 20px);
   }
 
   .btn-toggle-menu,
